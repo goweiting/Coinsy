@@ -20,11 +20,20 @@ switch mode
 end
 
 if show
-%     clf;
-    imshow([img img_disk]);
-%     subplot(1,2,1) = imshow(img); title('Original Image');
-%     subplot(1,2,2) = imshow(img_disk); title('Eroded with disk');
-%     subplot(1,3,3) = imshow(SE.Neighborhood); title('Structuring element');
+    
+    clf;
+
+    subplot(1,3,1);
+    imshow(img);
+    title('Original Image');
+    
+    subplot(1,3,2);
+    imshow(img_disk);
+    title('Eroded with disk');
+    
+    subplot(1,3,3);
+    imshow(SE.Neighborhood);
+    title('Structuring element');
 end
 
 end

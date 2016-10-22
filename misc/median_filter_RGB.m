@@ -29,7 +29,7 @@ subplot(3, 4, 1);
 imshow(rgbImage);
 title('Original color Image', 'FontSize', fontSize);
 % Enlarge figure to full screen.
-set(gcf, 'Position', get(0,'Screensize')); 
+set(gcf, 'Position', get(0,'Screensize'));
 
 % Extract the individual red, green, and blue color channels.
 redChannel = rgbImage(:, :, 1);
@@ -47,28 +47,28 @@ subplot(3, 4, 4);
 imshow(blueChannel);
 title('Blue Channel', 'FontSize', fontSize);
 
-% Generate a noisy image.  This has salt and pepper noise independently on
-% each color channel so the noise may be colored.
-noisyRGB = imnoise(rgbImage,'salt & pepper', 0.05);
-subplot(3, 4, 5);
-imshow(noisyRGB);
-title('Image with Salt and Pepper Noise', 'FontSize', fontSize);
-
-% Extract the individual red, green, and blue color channels.
-redChannel = noisyRGB(:, :, 1);
-greenChannel = noisyRGB(:, :, 2);
-blueChannel = noisyRGB(:, :, 3);
-
-% Display the noisy channel images.
-subplot(3, 4, 6);
-imshow(redChannel);
-title('Noisy Red Channel', 'FontSize', fontSize);
-subplot(3, 4, 7);
-imshow(greenChannel);
-title('Noisy Green Channel', 'FontSize', fontSize);
-subplot(3, 4, 8);
-imshow(blueChannel);
-title('Noisy Blue Channel', 'FontSize', fontSize);
+% % Generate a noisy image.  This has salt and pepper noise independently on
+% % each color channel so the noise may be colored.
+% noisyRGB = imnoise(rgbImage,'salt & pepper', 0.05);
+% subplot(3, 4, 5);
+% imshow(noisyRGB);
+% title('Image with Salt and Pepper Noise', 'FontSize', fontSize);
+%
+% % Extract the individual red, green, and blue color channels.
+% redChannel = noisyRGB(:, :, 1);
+% greenChannel = noisyRGB(:, :, 2);
+% blueChannel = noisyRGB(:, :, 3);
+%
+% % Display the noisy channel images.
+% subplot(3, 4, 6);
+% imshow(redChannel);
+% title('Noisy Red Channel', 'FontSize', fontSize);
+% subplot(3, 4, 7);
+% imshow(greenChannel);
+% title('Noisy Green Channel', 'FontSize', fontSize);
+% subplot(3, 4, 8);
+% imshow(blueChannel);
+% title('Noisy Blue Channel', 'FontSize', fontSize);
 
 % Median Filter the channels:
 redMF = medfilt2(redChannel, [3 3]);

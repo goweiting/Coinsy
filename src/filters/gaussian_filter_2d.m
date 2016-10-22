@@ -3,8 +3,8 @@ function smoothed_2d = gaussian_filter_2d(img, show, HSIZE, SIGMA )
 % INPUT:
 % - img : can be an RGB/HSV or GRAYSCALE image
 % - HSIZE : corresponds to fspecial requirements, can be a vector
-% specifying the number of rows and columns or a scalar (infered to be a
-% squared matrix
+%   specifying the number of rows and columns or a scalar (infered to be a
+%   squared matrix
 % - SIGMA : the spreaed of the Gaussian
 % N.B. Default HSIZE = [3,3], SIGMA = .5
 
