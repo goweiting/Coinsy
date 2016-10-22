@@ -19,11 +19,13 @@ if ndims(img_before) == 3
     % plot the histogram
     for i= 1:3
         subplot(2, 4, i+1);
-        plot(dohist(img_before(:,:,i)));
+        x = dohist(img_before(:,:,i));
+        plot(x);
         title([list_channels{i}, ' Channel']);
 
         subplot(2, 4, 5+i);
-        plot(dohist(img_after(:,:,i)));
+        y = dohist(img_after(:,:,i));
+        plot(y);
         title([list_channels{i}, ' Channel']);
     end
 
