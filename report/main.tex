@@ -1,7 +1,7 @@
-\documentclass[draft]{article}
+\documentclass[12pt, a4paper]{article}
 
 % import all stylistic options and packages from .sty
-\usepackage{../main/mystyle}
+\usepackage{mystyle}
 
 % Author info:
 \title{IVR Coursework 1 \\ Report}
@@ -12,12 +12,13 @@
 
   \maketitle
 
+  \subfile{intro}
   % sections:
-  \subfile{../section/intro}
-  % \subfile{methodology}
-  % \subfile{result}
-  % \subfile{}
+  \subfile{methodology}
+  \subfile{result}
+  \subfile{appendix}
+
   \bibliographystyle{apalike}
-  \bibliography{../main/references}
+  \bibliography{references}
 
 \end{document}
