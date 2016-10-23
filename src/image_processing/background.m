@@ -7,7 +7,7 @@ pic_size = size(first_pic);
 m = pic_size(1,1);
 n = pic_size(1,2);
 
-
+%comment
 for i = 1:m
     for j = 1:n
         r1(i,j,1) = myMedian(p1,p2,p3,p4,p5,p6,p7,p8,p9,i,j,1);
