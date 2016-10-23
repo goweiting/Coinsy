@@ -1,5 +1,6 @@
 function smoothed_2d = gaussian_filter_2d(img, show, HSIZE, SIGMA )
-%% Smooth an image using Gaussian lowpass filter and imfilter
+%% gaussian_filter_2d(img, show, HSIZE, SIGMA )
+% Smooth an image using Gaussian lowpass filter and imfilter
 % INPUT:
 % - img : can be an RGB/HSV or GRAYSCALE image
 % - HSIZE : corresponds to fspecial requirements, can be a vector

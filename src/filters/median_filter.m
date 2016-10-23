@@ -4,7 +4,7 @@ function img_filtered = median_filter(img, show, SIZE )
 %   local intensity distribution. The distribution being conisdered by the
 %   filter is determined by SIZE. 
 % 
-%   If there are more than 2 dim in img (such as a HSV or RGB) image,
+%   If there are more than 2 dims in img (such as a HSV or RGB) image,
 %   median filter is passed through each dimension independently. The
 %   resulting image is then put together as img_filtered.
 

@@ -13,7 +13,7 @@ if ndims(hist) == 3 % a color image is input,
 end
 
 % Use dohist to get the histogram of intensity
-hist = dohist(hist,0);
+hist = dohist(hist);
 
 % window_size and alpha not defined, use default
 if nargin == 1 || nargin == 2

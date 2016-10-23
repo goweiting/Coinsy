@@ -1,11 +1,11 @@
-function [img_out, gray_out] = normalise(RGB, SHOW)
-%% NORMALISE_INPUT(RGB)
+function [img_out, gray_out] = normalise_RGB(RGB, SHOW)
+%% NORMALISE_INPUT_RGB(RGB, SHOW)
 %   Normalise the RGB values for each pixel in the image RGB
 %   Also, output the gray normalised output of RGB (i.e. normalised RGB +
 %   rgb2gray();
 %   The algorithm for normalisation is the root sum of channels squared.
 
-
+%%
 RGB = double(RGB); % cast into double
 RED_Channel     = RGB(:,:,1);
 GREEN_channel   = RGB(:,:,2);
