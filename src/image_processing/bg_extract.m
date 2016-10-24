@@ -58,9 +58,10 @@ if ndims(sample) == 3
 %             disp([i,j]); %DEBUG
 
             % store all the values from each img in IMGS
-            median_RED      = zeros(1, num_imgs);
-            median_GREEN    = zeros(1, num_imgs);
-            median_BLUE     = zeros(1, num_imgs);
+%             median_RED      = zeros(1, num_imgs);
+%             median_GREEN    = zeros(1, num_imgs);
+%             median_BLUE     = zeros(1, num_imgs);
+            median_RGB = zeros(num_imgs,1,3);
             
             % find bounding box of pixels
             x_low   = i - offset + 1;
@@ -70,25 +71,30 @@ if ndims(sample) == 3
 %             disp([x_low,x_high,y_low,y_high]); % DEBUG
             
             % iterate through all the pixels for the image
-            for k=1:num_imgs    
-                % get the pixels belonging in the image:
-                pixels_RED      = IMGS{k}(x_low:x_high, y_low:y_high, 1);
-                pixels_RED      = reshape(pixels_RED, [], 1);
-                median_RED(k)   = median(pixels_RED); % get the median of the nieghbood! 
-                
-                pixels_GREEN    = IMGS{k}(x_low:x_high, y_low:y_high, 2);
-                pixels_GREEN    = reshape(pixels_GREEN, [], 1);
-                median_GREEN(k) = median(pixels_GREEN); % get the median of the nieghbood! 
-                
-                pixels_BLUE     = IMGS{k}(x_low:x_high, y_low:y_high, 3);
-                pixels_BLUE     = reshape(pixels_BLUE, [], 1);
-                median_BLUE(k)  = median(pixels_BLUE); % get the median of the nieghbood! 
+            for k=1:num_imgs
+                temp = IMGS{k};
+                segment = temp(x_low:x_high, y_low:y_high, :);
+                med = median(median(segment)); % median along the color axis
+                median_RGB(k,1,:) = med;
+%                 % get the pixels belonging in the image:
+%                 pixels_RED      = IMGS{k}(x_low:x_high, y_low:y_high, 1);
+%                 pixels_RED      = reshape(pixels_RED, [], 1);
+%                 median_RED(k)   = median(pixels_RED); % get the median of the nieghbood! 
+%                 
+%                 pixels_GREEN    = IMGS{k}(x_low:x_high, y_low:y_high, 2);
+%                 pixels_GREEN    = reshape(pixels_GREEN, [], 1);
+%                 median_GREEN(k) = median(pixels_GREEN); % get the median of the nieghbood! 
+%                 
+%                 pixels_BLUE     = IMGS{k}(x_low:x_high, y_low:y_high, 3);
+%                 pixels_BLUE     = reshape(pixels_BLUE, [], 1);
+%                 median_BLUE(k)  = median(pixels_BLUE); % get the median of the nieghbood! 
             end
             
             % Set the meidan for respecitve color channel to the bg_model
-            bg_model(i,j,1) = median(median_RED);
-            bg_model(i,j,2) = median(median_GREEN);
-            bg_model(i,j,3) = median(median_BLUE);
+%             bg_model(i,j,1) = median(median_RED);
+%             bg_model(i,j,2) = median(median_GREEN);
+%             bg_model(i,j,3) = median(median_BLUE);
+            bg_model(i,j,:) = median(median_RGB);
         end
         fprintf('.');
     end
