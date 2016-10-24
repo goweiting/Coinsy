@@ -1,9 +1,9 @@
-function [ bg_model ] = bg_extract( IMGS, WINDOW_SIZE)
+function [ bg_model ] = bg_extract( IMGS, WINDOW_SIZE )
 %% BACKGROUND_MODEL(IMG, WINDOW_SIZE
 %   Given a series of image, we find the common background using median
 %   filtering. For each pixel in the bg_model, we take the median of all
 %   the pixels in the WINDOW_SIZE for all the images. If WINDOW_SIZE = 1,
-%   it is equivalent to taking the median of pixel intensity in all the
+%   it is equivalent to taking the median of pixel intensity of all the
 %   images. 
 %   If input image is RGB, then this is carried out for all channel.
 

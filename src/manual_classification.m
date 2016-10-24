@@ -38,7 +38,7 @@ for i=1:num_imgs % for each images:
     % TRIM THE DATASET even further!
     PROP{i}
     FLAG = PROP{i}.FLAG; % get matrix of flag
-    PROP{i}.Properties(Flag) = []; % remove irrelevant data from properties
+    PROP{i}.Properties([logical(FLAG)]) = []; % remove irrelevant data from properties
     classified = sum(~FLAG);
     removed = sum(FLAG);
     PROP{i}.num_of_obj = classified; % update number of training example left
@@ -49,7 +49,7 @@ for i=1:num_imgs % for each images:
     total_removed =+ removed;
 
     fprintf('SUMMARY:\n# Sub Images : %d / %d\n# Classified : %d / %d\n# Removed : %d / %d\n',...
-                num_subimg, total_imagesm, classified, total_classified,...
+                num_subimg, total_images, classified, total_classified,...
                 removed, total_removed)
     
     

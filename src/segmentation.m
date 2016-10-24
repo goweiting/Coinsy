@@ -37,19 +37,19 @@ IMGS_BG = {img2, img3, img4, img5, img6, img7, img8, img9, img10, ...
 
 %% PRE-PROCESSING%%
 fprintf('\t\tPREPROCESSING IMAGES\n');
-%% NORMALISATION
-%   Here, we normalise the images before extracting the background
-disp(bar);
-
-fprintf('\n>> Normalising the images\n');
-for i = 1:num_img_bg
-    fprintf('.');
-    IMGS_BG{i} = normalise_RGB(IMGS_BG{i}, 0);
-%     figure; % DEBUG
-end
-fprintf('\n%d images Normalised\n\n', i);
-
-disp(bar);
+% %% NORMALISATION
+% %   Here, we normalise the images before extracting the background
+% disp(bar);
+% 
+% fprintf('\n>> Normalising the images\n');
+% for i = 1:num_img_bg
+%     fprintf('.');
+%     IMGS_BG{i} = normalise_RGB(IMGS_BG{i}, 0);
+% %     figure; % DEBUG
+% end
+% fprintf('\n%d images Normalised\n\n', i);
+% 
+% disp(bar);
 
 %% IMAGE SEGMENTATION %%
 fprintf('\t\tIMAGE SEGMENTATION\n');
