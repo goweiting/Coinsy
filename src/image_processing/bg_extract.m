@@ -32,15 +32,15 @@ bg_model = (sample); % preallocation of memory
 % ==>  offset = (WS + 1) / 2
 
 % prevent even number WINDOW_SIZE
-if mod(WINDOW_SIZE,2) ~= 1
+if mod(WINDOW_SIZE, 2) ~= 1
     error('Window_size must be an odd number!');
 end
 
 offset = uint64((WINDOW_SIZE + 1)/2);
 
 disp('Extracting background from images....');
-fprintf('WINDOW_SIZE = %d\n', WINDOW_SIZE);
-fprintf('Offset = %d\n', uint8(offset));
+fprintf('\tWINDOW_SIZE = %d\n', WINDOW_SIZE);
+fprintf('\tOffset = %d\n', uint8(offset));
 
 
 %% iterate through all the images and set the 
@@ -123,8 +123,7 @@ else
 end
 
 bg_model = uint8(bg_model); % cast back to int
-
-imshow(bg_model);
+% imshow(bg_model); % DEBUG
 disp('done');
 
 end
