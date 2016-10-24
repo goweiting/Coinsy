@@ -4,7 +4,12 @@
 clc,clf,clear all;
 
 % add all relevant folders && misc stuff
-addpath('filters/', 'image_processing/', 'segmentation/', 'classification/', 'object_recognition/'); 
+addpath('filters/', 'image_processing/', 'segmentation/', 'classification/', ...
+    'object_recognition/', 'classification/COUNT/1POUND','classification/COUNT/20P/',...
+    'classification/COUNT/25P/','classification/COUNT/2P/','classification/COUNT/2POUND/',...
+    'classification/COUNT/50P/','classification/COUNT/5P/','classification/COUNT/75P/',...
+    'classification/DONT_COUNT/AAA/','classification/DONT_COUNT/NUT/');
+
 bar = '=========================================================';
 barbar = '---------------------------------------------------------';
 
@@ -25,6 +30,7 @@ img12   = imread('../practice/harder/18.jpg');
 img13   = imread('../practice/harder/19.jpg');
 img14   = imread('../practice/harder/20.jpg');
 img15   = imread('../practice/harder/21.jpg');
+IMGS    = {img2, img3, img4, img5, img6, img7, img8, img9, img10};
 IMGS_BG = {img2, img3, img4, img5, img6, img7, img8, img9, img10, ... 
             img11, img12, img13, img14, img15 };
 [~, num_img_bg]  = size(IMGS_BG);
@@ -61,8 +67,8 @@ fprintf('\n'); disp(bar);
 disp(bar);
 
 fprintf('\n>> Subtracting bg_model from all IMGS\n');
-IMGS    = IMGS_BG(1:9); % get all the normalised images,
-[IMG_BGREMOVE, ~] = bg_subtraction(IMGS, bg_model);
+IMGS_NORM   = IMGS_BG(1:9); % get all the normalised images,
+[IMG_BGREMOVE, ~] = bg_subtraction(IMGS_NORM, bg_model);
 
 fprintf('\n'); disp(bar);
 

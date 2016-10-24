@@ -1,5 +1,5 @@
 function edges_morph = edge_morph_disk(img)
-%% EDGE_MORPH
+%% EDGE_MORPH_DISK(img)
 %   outputs the edges found from morphing the image
 %   specifically, the disk strcture element will be used
 
