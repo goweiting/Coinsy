@@ -10,8 +10,8 @@ function [ bg_model ] = bg_extract( IMGS, WINDOW_SIZE)
 %   INPUT:
 %   - IMGS : A cell array of images. Images must be of the same size. IMGS
 %   have size of (1,num_imgs)
-%   - WINDOW_SIZE : the window of median_filter. If undefined, WINDOW_SIZE
-%   = 1
+%   - WINDOW_SIZE : the window of median_filter. 
+%       If undefined, WINDOW_SIZE = 1
 
 %   OUTPUT:
 %   - bg_model - an image of the same size as IMGS with the background
@@ -23,20 +23,24 @@ if nargin == 1
 end
 
 [~, num_imgs] = size(IMGS);
-sample = IMGS{1};
-bg_model = (sample); % preallocation of memory
+sample      = IMGS{1};
+bg_model    = sample; % preallocation of memory
 
 % Given a WINDOW_SIZE, find the number of cell to compensate:
 % Window_Size    1 3 5 7 9...
 % offset     ==  1 2 3 4 5 
 % ==>  offset = (WS + 1) / 2
 
-% prevent even number WINDOW_SIZE
+% !! prevent even number WINDOW_SIZE
 if mod(WINDOW_SIZE, 2) ~= 1
     error('Window_size must be an odd number!');
 end
 
 offset = uint64((WINDOW_SIZE + 1)/2);
+
+% if offset == 1
+%     offset = 0; % no need to offset if Window_size = 1
+% end
 
 disp('Extracting background from images....');
 fprintf('\tWINDOW_SIZE = %d\n', WINDOW_SIZE);
@@ -49,8 +53,8 @@ if ndims(sample) == 3
     [rows, cols, ~] = size(sample);
     
     % iterate each cell, neglecting offset cause of WINDOW_SIZE
-    for i = offset:rows-offset
-        for j = offset:cols-offset
+    for i = offset:rows-offset+1
+        for j = offset:cols-offset+1
 %             disp([i,j]); %DEBUG
 
             % store all the values from each img in IMGS

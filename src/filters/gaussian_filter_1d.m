@@ -1,11 +1,15 @@
 function smoothed_1d = gaussian_filter_1d(hist, show, window_size, alpha)
-%% Uses the gausswin function to produce a gaussian window,
-% then apply a conv to the 1d - hist. If hist is not 1d, coerce it into 1d
-% Note: 
-% As alpha increase, width of window will decrease. Default = 2.5
-% As window_size increase, the curve will be smoother.
-% Use dohist to get the histogram!
+%% GAUSSIAN_FILTER_1D(HIST, SHOW, WINDOW_SIZE, ALPHA)
+%   Uses the gausswin function to produce a gaussian window,
+%   then apply a conv to the 1d-hist. 
+%   If hist is not 1d, coerce it into 1d
 
+%   Note: 
+%   As alpha increase, width of window will decrease. Default = 2.5
+%   As window_size increase, the curve will be smoother.
+%   Use dohist to get the histogram!
+
+%%
 % first check for the size of the image, if not 1d, coerce it
 if ndims(hist) == 3 % a color image is input,
     % convert to grayscale first:

@@ -7,8 +7,8 @@ function edges_morph = edge_morph_disk(img)
 %   filters/morph_disk.m
 
 %% MORPHING
-img_disk_big    = morph_disk(img, 1,  5, 0);  % DILATION
-img_disk_small  = morph_disk(img, 0,  3 , 0); % EROSION
+img_disk_big    = morph_disk(img, 1,  3, 0);  % DILATION
+img_disk_small  = morph_disk(img, 0,  1 , 0); % EROSION
 
 % Subtract for gradient edge detection
 edges_morph = img_disk_big - img_disk_small; 

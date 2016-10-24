@@ -1,4 +1,4 @@
-function [new_img, bg_model] = bg_subtraction(img, bg_model)
+function [img_bgremove, bg_model] = bg_subtraction(img, bg_model)
 %% BG_SUBTRACTION(IMG, BG_MODEL)
 %   returns a new image after subtracting it with the bg_model
 %   Given a cell array of img, bg_model models after these img and return a
@@ -22,7 +22,7 @@ function [new_img, bg_model] = bg_subtraction(img, bg_model)
 if iscell(img)
     
     [~, num_img] = size(img);
-    new_img = img; % memory allocation
+    img_bgremove = img; % memory allocation
     
     switch nargin
         case 1
@@ -31,19 +31,19 @@ if iscell(img)
     
             % carry out subtraction:
             for i=1:num_img
-                new_img{i} = abs(img{i} - bg_model); % take abs, avoid negative
+                img_bgremove{i} = abs(img{i} - bg_model); % take abs, avoid negative
             end
 
         case 2
             disp('subtracting all images with given bg_model')
             % carry out subtraction:
             for i=1:num_img
-                new_img{i} = abs(img{i} - bg_model);
+                img_bgremove{i} = abs(img{i} - bg_model);
             end
     end
 else
     % subtract bg from img;
-    new_img = abs(img - bg_model);
+    img_bgremove = abs(img - bg_model);
 end
 
 disp('done');
