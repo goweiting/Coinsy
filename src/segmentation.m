@@ -1,19 +1,4 @@
 %% SCRIPT FOR IMAGE SEGMENTATION:
-%   Here, we attempt to use gradient magnitude for segmentation:
-%   Gradient magnitude and direction tells us where the edges are.
-%   first, we find the gradient in each direction (x,y) and then find the
-%   zero-crossings of pixels
-%   Reference: http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/MORSE/edges.pdf
-%   Problem:
-%   - Sensitive to noise
-%   - two pixel thick edges 
-
-%   Functions used:
-%   -   
-
-
-
-
 %% START CODE:
 clc,clf,clear all; close all;
 
@@ -53,27 +38,6 @@ IMGS_BG = {img2, img3, img4, img5, img6, img7, img8, img9, img10, ...
 
 %% PRE-PROCESSING%%
 fprintf('\t\tPREPROCESSING IMAGES\n');
-
-% RGB = img4;
-% RED = RGB(:,:,1); GREEN = RGB(:,:,2); BLUE = RGB(:,:,3);
-% 
-% % find gradient magnitude and plot:
-% % [RED_gx, RED_gy]        = imgradientxy(RED);
-% % [GREEN_gx, GREEN_gy]    = imgradientxy(GREEN);
-% % [BLUE_gx, BLUE_gy]      = imgradientxy(BLUE);
-% % [RED_gm ,~] = imgradient(RED_gx,RED_gy);
-% % [BLUE_gm, ~] = imgradient(BLUE_gx, BLUE_gy);
-% % [GREEN_gm, ~] = imgradient(GREEN_gx, GREEN_gy);
-% % 
-% % RGB_gm = cat(3,RED_gm, BLUE_gm, GREEN_gm);
-% 
-% GRAY = rgb2gray(RGB);
-% [gx,gy] = imgradientxy(GRAY);
-% gmag = imgradient(gx,gy);
-
-
-%% TRYING NORMALISING = BLUE CHANNEL:
-
 %% NORMALISATION
 %   Here, we normalise the images before extracting the background
 disp(bar);
@@ -81,7 +45,7 @@ disp(bar);
 fprintf('\n>> Normalising the images\n');
 for i = 1:num_img_bg
     fprintf('.');
-    IMGS_BG{i} = IMGS_BG{i}(:,:,3);
+    IMGS_BG{i} = normalise_RGB(IMGS_BG{i},0);
 %     figure; % DEBUG
 end
 fprintf('\n%d images Normalised\n\n', i);
@@ -124,4 +88,4 @@ fprintf('\nimg_thresh,thresh_vals added\n\n'); disp(bar);
 % AT this stage, we have threshold all our training set. 
 % call another script for feature extraction
 
-%% 
+%% NEXT>> EXTRACT FEATURES
