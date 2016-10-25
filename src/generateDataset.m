@@ -12,9 +12,23 @@ function [X_train, X_vali, X_test, y_train, y_vali, y_test] = ...
 
 %%
 if (train + vali + test) == 1;
+    
+    [~, num_imgs] = size(PROP);
+    [~, num_features] = size(PROP{1}.Properties(1).Features);
+    num_data = 0;
+    
     % first, put all images together
+    for im=1:num_img
+        num_of_obj = PROP{im}.num_of_obj;
+        num_data = num_data + num_of_obj; % increment counter
+        
+        for obj=1:num_of_obj % iterate through the data
+            y = PROP{im}.Properties.Class
+        end
+        
+    end
     
-    
+        
     
     
 else

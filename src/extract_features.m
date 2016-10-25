@@ -29,10 +29,10 @@ for i=1:num_imgs % create the structs for each sample images
                     'MajorAxisLength', 'MinorAxisLength', 'Perimeter', 'Solidity');
     
     % remove regions with small pixel area, which may be blobs:
-%     bad = [scalar.Area] <= 500;
-%     scalar(bad)     = [];
-%     imagery(bad)    = [];
-%     disp('prune - Area<=500'); %% DEBUG
+    bad = [scalar.Area] <= 500;
+    scalar(bad)     = [];
+    imagery(bad)    = [];
+    disp('prune - Area<=500'); %% DEBUG
     
     [num , ~] = size(imagery); % update the number of instances left!
         
