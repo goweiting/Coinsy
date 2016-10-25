@@ -1,5 +1,7 @@
-% gets property vector for a binary shape in an image
 function vec = getproperties(Image)
+%% getproperties(Image)
+%   gets property vector for a binary shape in an image
+%   properties extracted: 1) area, perimeter, 
 
 [H,W] = size(Image);
 area = bwarea(Image);
