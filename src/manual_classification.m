@@ -1,5 +1,5 @@
 %% Script for classification of subimages
-% USER CLASSIFY THE SUBIMAGES
+%   USER CLASSIFY THE SUBIMAGES
 
 %% Param
 
@@ -36,7 +36,7 @@ for i=1:num_imgs % for each images:
     end
     
     % TRIM THE DATASET even further!
-    PROP{i}
+    PROP{i} % display some info for the picture...
     FLAG = PROP{i}.FLAG; % get matrix of flag
     PROP{i}.Properties([logical(FLAG)]) = []; % remove irrelevant data from properties
     classified = sum(~FLAG);
@@ -51,8 +51,5 @@ for i=1:num_imgs % for each images:
     fprintf('SUMMARY:\n# Sub Images : %d / %d\n# Classified : %d / %d\n# Removed : %d / %d\n',...
                 num_subimg, total_images, classified, total_classified,...
                 removed, total_removed)
-    
-    
-    
     
 end

@@ -16,32 +16,48 @@
 [~, num_imgs] = size(IMG_THRESH);
 PROP ={}; % define an array to hold the structs for each images
 
-for i=1:num_imgs % create the structs for each images
+for i=1:num_imgs % create the structs for each sample images
     
-    [L, num]    = bwlabel(IMG_THRESH{i}, 8);
-    prop        = regionprops(L, 'Centroid', ... % Properties required, may add more!
-                'MajorAxisLength','MinorAxisLength','Perimeter','Area', ...
-                'Image', 'BoundingBox');
-            
+    % here, get the label from the threshold image, and extract information
+    % about each label, store in Properties
     %!!! for manual adding, use PROP{i}.prop(OBJ_NUM).<label> = <value> %%
+    [L, num]    = bwlabel(IMG_THRESH{i}, 8);
+    imagery     = regionprops(L, 'BoundingBox', 'ConvexHull', 'ConvexImage',...
+                    'FilledImage', 'Image','Centroid'); % this is the BW image!
+    scalar      = regionprops(L, 'Area','ConvexArea','Eccentricity', ...
+                    'EquivDiameter','EulerNumber', 'Extent', 'FilledArea', ...
+                    'MajorAxisLength', 'MinorAxisLength', 'Perimeter', 'Solidity');
     
-    % remove regions with small pixel area:
-    prop([prop.Area] <= 500) = [];
-    [num , ~] = size(prop); % update the number of instances left!
+    % remove regions with small pixel area, which may be blobs:
+    bad = [scalar.Area] <= 500;
+    scalar(bad)     = [];
+    imagery(bad)    = [];
+    
+    [num , ~] = size(imagery); % update the number of instances left!
         
-    % grab the subimages:
+    % grab the colored subimages, and calculate the complex moments,..etc, 
+    % for ease of classification:
     subimage = struct();
     for n=1:num
-        org_img = IMGS{i}; % get the original image
-        boundary = prop(n).BoundingBox; % find the boundary
-        subImg = imcrop(org_img, boundary); % crop the original image according to boundary
-        prop(n).BWImage = subImg;
+        org_img     = IMGS{i}; % get the original image
+        boundary    = imagery(n).BoundingBox; % find the boundary
+        subImg      = imcrop(org_img, boundary); % crop the original image according to boundary
+        imagery(n).ColoredImage = subImg;
+        bwimg = imagery(n).Image;
+        
+        % calculate the moments by calling classification/getProperties
+        vect(n).Features = getproperties(imagery(n), scalar(n));
     end
     
     % store in struct
-    PROP{i} = struct('label', L, 'num_of_obj', num, ... 
-                        'ORIGINAL',IMGS{i}, 'THRESH', IMG_THRESH{i},...
-                        'Properties', prop);
+    PROP{i} = struct('label', L, ...
+                'num_of_obj', num, ... 
+                  'ORIGINAL', IMGS{i},...
+                    'THRESH', IMG_THRESH{i},...
+                 'SubImages', imagery,...
+                'Properties', scalar,...
+                  'Features', vect);
+                    
 end
 
 %% Clasify yeahh?
