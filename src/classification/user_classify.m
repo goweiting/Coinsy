@@ -12,19 +12,19 @@ if relevance
     fprintf('[1] 1 POUND  [2] 2 POUND  [3] 50 P  [4] 20 P  [5] 5 P\n')
     fprintf('[6] 75 P (washer w small hole)  [7] 25 P (washer w large hole)\n');
     fprintf('[8] 2 P (angle bracket)\n[9] AAA battery (no val)  [10] nut (no value)\n');
-    fprintf('[11] DISCARD\n\n');
+    fprintf('[0] HELP!! (will display the bigger picture)\n\n');
     prompt = '>>  ';
     class = input(prompt);
-    
+        
     % Reject error in class input
-    while (class < 1 || class > 11)
+    while (class < 0 || class > 10)
         fprintf('Classes ranges from 1 to 11 only\n');
         class = input(prompt);
     end
     
     fprintf('\n===\n')
 else
-    class = 0;
+    class = 404;
 end
 
 

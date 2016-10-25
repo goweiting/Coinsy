@@ -1,4 +1,4 @@
-function vec = getproperties(image, prop)
+function vec = getFeatures(image, prop)
 %% getproperties(Image)
 %   gets property vector for a binary shape in an image
 %   properties extracted: 

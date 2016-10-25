@@ -29,24 +29,24 @@ for i=1:num_imgs % create the structs for each sample images
                     'MajorAxisLength', 'MinorAxisLength', 'Perimeter', 'Solidity');
     
     % remove regions with small pixel area, which may be blobs:
-    bad = [scalar.Area] <= 500;
-    scalar(bad)     = [];
-    imagery(bad)    = [];
+%     bad = [scalar.Area] <= 500;
+%     scalar(bad)     = [];
+%     imagery(bad)    = [];
+%     disp('prune - Area<=500'); %% DEBUG
     
     [num , ~] = size(imagery); % update the number of instances left!
         
     % grab the colored subimages, and calculate the complex moments,..etc, 
     % for ease of classification:
-    subimage = struct();
+    vect = struct();
     for n=1:num
         org_img     = IMGS{i}; % get the original image
         boundary    = imagery(n).BoundingBox; % find the boundary
         subImg      = imcrop(org_img, boundary); % crop the original image according to boundary
-        imagery(n).ColoredImage = subImg;
-        bwimg = imagery(n).Image;
+        imagery(n).ColoredImage = subImg;  % assign into the struct
         
         % calculate the moments by calling classification/getProperties
-        vect(n).Features = getproperties(imagery(n), scalar(n));
+        scalar(n).Features = getFeatures(imagery(n), scalar(n));
     end
     
     % store in struct
@@ -55,8 +55,7 @@ for i=1:num_imgs % create the structs for each sample images
                   'ORIGINAL', IMGS{i},...
                     'THRESH', IMG_THRESH{i},...
                  'SubImages', imagery,...
-                'Properties', scalar,...
-                  'Features', vect);
+                'Properties', scalar);
                     
 end
 
@@ -65,8 +64,4 @@ man_class = input('do you want to manually classify these images now? [0/1]');
 if man_class
     manual_classification;
 end
-
-
-
-
-
+%%
