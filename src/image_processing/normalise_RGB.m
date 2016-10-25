@@ -42,6 +42,8 @@ gray_out = rgb2gray(img_out);
 %% DISPLAY RESULT:
 if SHOW
     display_stats(RGB, img_out);
+    figure;
+    display_stats(rgb2gray(RGB),gray_out);
 end
 
 end

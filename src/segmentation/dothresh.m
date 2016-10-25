@@ -1,5 +1,5 @@
 function [img_thresh, thresh_vals] = dothresh(IMGS, sizeparam)
-%% DOTHRESH(IMGS)
+%% DOTHRESH(IMGS, SIZEPARAM)
 %   Function that find the threshold for an image then apply thresholding
 %   to get a binary image.
 % 
@@ -49,6 +49,8 @@ if iscell(IMGS)
             % Now, `OR` the values together
             img_thresh{k} = imgX(:,:,1) | imgX(:,:,2) | imgX(:,:,3);
             
+        else % for 2D case
+            [img_thresh{k}, thresh_vals{k}] = dothresh(img,sizeparam);
         end
         
     end
@@ -66,7 +68,7 @@ else
     % now, get the binary representation
     for i=1:n
         for j=1:m
-            if IMGS(i,j) > thresh_vals % this is the objects! we want it!
+            if IMGS(i,j) >= thresh_vals % this is the objects! we want it!
                 img_thresh(i,j) = 1;
             else
                 img_thresh(i,j) = 0; % set background to 0
