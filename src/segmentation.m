@@ -25,6 +25,17 @@ img8    = imread('../practice/simpler/08.jpg');
 img9    = imread('../practice/simpler/09.jpg');
 img10   = imread('../practice/simpler/10.jpg');
 
+img2    = img2 * 1.8;
+img3    = img3 * 1.8;
+img4    = img4 * 1.8;
+img5    = img5 * 1.8;
+img6    = img6 * 1.8;
+img7    = img7 * 1.8;
+img8    = img8 * 1.8;
+img9    = img9 * 1.8;
+img10   = img10* 1.8;
+
+
 img11   = imread('../practice/harder/17.jpg');
 img12   = imread('../practice/harder/18.jpg');
 img13   = imread('../practice/harder/19.jpg');
