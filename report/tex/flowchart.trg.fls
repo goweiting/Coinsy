@@ -34,6 +34,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/flowchart.trg.pgf
+INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/flowchart.trg.pgf
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
@@ -86,4 +88,7 @@ OUTPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/flowchart.trg.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 OUTPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/flowchart.trg.pdf
+OUTPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/flowchart.trg.pgf
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/flowchart.trg.aux
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb

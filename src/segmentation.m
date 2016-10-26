@@ -27,12 +27,36 @@ bg_model = bg_extract(IMGS_BG, WINDOW_SIZE);
 
 fprintf('\n'); disp(bar);
 
+
+
+imshow(bg_model);
+export_fig('norm_1.png');
+disp(bar);
+
+WINDOW_SIZE = 3;
+fprintf('\n>> Generating Background Model With WINDOW_SIZE = %d\n', WINDOW_SIZE);
+bg_model = bg_extract(IMGS_BG, WINDOW_SIZE);
+
+fprintf('\n'); disp(bar);
+imshow(bg_model);
+export_fig('norm_3.png');
+disp(bar);
+
+WINDOW_SIZE = 5;
+fprintf('\n>> Generating Background Model With WINDOW_SIZE = %d\n', WINDOW_SIZE);
+bg_model = bg_extract(IMGS_BG, WINDOW_SIZE);
+
+fprintf('\n'); disp(bar);
+imshow(bg_model);
+export_fig('norm_5.png');
+
+
 %% BACKGROUND SUBTRACTION
 disp(bar);
 
 fprintf('\n>> Subtracting bg_model from all IMGS\n');
 IMGS_NORM   = IMGS_BG(1:9); % get all the normalised images,
-[IMG_BGREMOVE, ~] = bg_subtraction(IMGS_NORM, bg_model);
+[IMGS_BGREMOVE, ~] = bg_subtraction(IMGS_NORM, bg_model);
 
 fprintf('\n'); disp(bar);
 
@@ -43,9 +67,9 @@ disp(bar);
 
 fprintf('\n>> Doing thresholding...');
 sizeparam = 16;
-[IMG_THRESH, thresh_vals] = dothresh(IMG_BGREMOVE, sizeparam);
+[IMGS_THRESH, thresh_vals] = dothresh(IMGS_BGREMOVE, sizeparam);
 
-fprintf('\nimg_thresh,thresh_vals added\n\n'); disp(bar);
+fprintf('\nIMGS_THRESH and thresh_vals added\n\n'); disp(bar);
 
 %% NOTE:
 % AT this stage, we have threshold all our training set. 

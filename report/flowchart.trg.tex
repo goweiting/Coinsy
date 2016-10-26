@@ -3,31 +3,34 @@
 
 \begin{document}
 \begin{tikzpicture}  [scale=.2, node distance=.3cm, start chain=going below]
+  %% DATA
+  \node[punktchain, join] (data)
+    {Given data (\verb+IMGS_BG+)};
   %% Preprocessing
-
-  \node[preprocessing, join] (normalisation)
+  \node[imgprocessing, join] (normalisation)
       {Normalisation of sample images};
-	\node[punktchain, join] (bg_extract)
-    {Extract background - \verb+(bg_model)+};
+	\node[imgprocessing, join] (bg_extract)
+    {Extract Background (\verb+bg_model+)};
   %% Image segmentation
-  \node[segmentation, join] (bg_subtract)
-      {Background Subtraction};
-	\node[segmentation, join] (thresholding)
-      {Thresholding, Find Edges};
-	\node[segmentation, join] (segment)
-      {Extract regions};
+  \node[imgprocessing, join] (bg_subtract)
+      {Background Subtraction };
+	\node[imgprocessing, join] (thresholding)
+      {Thresholding\\Find edges };
+	\node[imgprocessing, join] (segment)
+      {Extract regions (subimages)};
+  %% Feat Extract
+	\node[featextract, join] (features)
+      {Extract properties (\verb+DATA+)};
   %% Training Classifier
-	\node[classification, join] (features)
-      {Extract properties \verb+(regionprops)+};
   \node[classification, join] (manual_clf)
       {Muanually classify all regions};
   \node[classification, join] (classifier)
-      {Generate Deataset - Training and Testing;\\Parameter Estimation Using Training set for  Multivarate Gaussian Model };
+      {Generate Deataset - Training and Testing;\\Parameter Estimation Using Training set for Multivarate Gaussian Model};
   \node[classification, join] (counting)
-      {Evaluate model with validation - fine-tuning parameters};
+      {Evaluate model, fine-tuning parameters};
   \node[classification, join] (counting)
       {Evaluate model with test set};
-      
+
   \node[punktchain, join] (next_job)
       {Ready for testing};
 

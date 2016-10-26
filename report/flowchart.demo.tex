@@ -4,30 +4,28 @@
 \begin{document}
 \begin{tikzpicture} [scale=.2, node distance=.3cm, start chain=going below]
   %% DATA
-  \node[punktchain, join] (Data)
-    {Given data:
-    \begin{itermize}
-    \item 9 simpler images
-    \item 5 harder images
-    \end{itermize}}
+  \node[punktchain, join] (next_job)
+      {Input image};
   %% PREPROCESSING
-  \node[imageprocess, join] (normalisation)
+  \node[imgprocessing, join] (normalisation)
       {Normalisation of image};
   %% SEGMENTATION
-  \node[imageprocess, join] (bg_subtract)
-      {Background Subtraction};
-	\node[imageprocess, join] (thresholding)
-      {Thresholding};
-	\node[imageprocess, join] (segment)
-      {Find edges and extract regions};
-	\node[classification, join] (features)
-      {Extract properties};
+  \node[imgprocessing, join] (bg_subtract)
+      {Background Subtraction using \verb+bg_model+};
+  \node[imgprocessing, join] (thresholding)
+      {Thresholding and find edges};
+  \node[imgprocessing, join] (region)
+      {Extract Regions (subimages)};
+  %% Feat extraction
+	\node[featextract, join] (features)
+      {Extract properties (\verb+X_test+)};
+  %% Classsification
   \node[classification, join] (classifier)
-      {Classification of regions};
+      {Classification of \verb+X_test+};
   \node[classification, join] (counting)
-      {Count value of coins};
+      {Output classification results\\Count value of coins};
   \node[punktchain, join] (next_job)
-      {Next image};
+      {Ready for Next image\\(Online update of model - not implemented)};
 
 \end{tikzpicture}
 
