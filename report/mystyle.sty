@@ -12,3 +12,75 @@
 \usepackage{setspace}
 \setstretch{1.2} % set 1.5 line spacing
 \setlength{\parskip}{1em}
+
+\usepackage{float}
+\floatstyle{plain}
+\restylefloat{figure}
+
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+% for drawing diagram
+% adapted from http://www.texample.net/tikz/examples/assignment-structure/
+\usepackage{tikz}
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols}
+\tikzset{
+>=stealth',
+  %% STANDARD BOXES
+  punktchain/.style={
+    rectangle,
+    rounded corners,
+    % fill=yellow!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  %% PREPROCESSING BOXES
+  preprocessing/.style={
+    rectangle,
+    rounded corners,
+    fill=gray!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  %% SEGMENTATION BOXES
+  segmentation/.style={
+    rectangle,
+    rounded corners,
+    fill=yellow!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  %% CLASSIFICATION
+  classification/.style={
+    rectangle,
+    rounded corners,
+    fill=violet!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  line/.style={draw, thick, <-},
+  element/.style={
+    tape,
+    top color=white,
+    bottom color=blue!50!black!60!,
+    minimum width=8em,
+    draw=blue!40!black!90, very thick,
+    text width=10em,
+    minimum height=3.5em,
+    text centered,
+    on chain},
+  every join/.style={->, thick,shorten >=1pt},
+  decoration={brace},
+  tuborg/.style={decorate},
+  tubnode/.style={midway, right=2pt},
+}

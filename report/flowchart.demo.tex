@@ -1,0 +1,28 @@
+\documentclass[main.tex,tikz]{subfiles}
+% CREATE THE FLOWCHART FOR DEMO:
+
+\begin{document}
+\begin{tikzpicture} [scale=.2, node distance=.3cm, start chain=going below]
+
+  %% PREPROCESSING
+  \node[preprocessing, join] (normalisation)
+      {Normalisation of image (RGB channel)};
+  %% SEGMENTATION
+  \node[segmentation, join] (bg_subtract)
+      {Background Subtraction};
+	\node[segmentation, join] (thresholding)
+      {Thresholding};
+	\node[segmentation, join] (segment)
+      {Find edges and extract regions};
+	\node[classification, join] (features)
+      {Extract properties};
+  \node[classification, join] (classifier)
+      {Classification of regions};
+  \node[classification, join] (counting)
+      {Count value of coins};
+  \node[punktchain, join] (next_job)
+      {Next image};
+
+\end{tikzpicture}
+
+\end{document}
