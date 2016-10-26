@@ -5,7 +5,7 @@
 %%
 %% The introduction is an overview of the main ideas used in your approach!
 %%
-To recognise and count the coins in an image, Coinsy, have three subtasks: 1) Image processing (includes image segmentation and smoothing), 2) Feature Extraction, and 3) Classifiation (and then counting the coins).
+To recognise and count the coins in an image, Coinsy, have three subtasks: 1) Image processing (includes image segmentation), 2) Features extraction, and 3) Classifiation (and then counting the coins).
 
 \begin{figure}[!t]
   \begin{subfigure}[t]{0.5\textwidth}
@@ -21,12 +21,34 @@ To recognise and count the coins in an image, Coinsy, have three subtasks: 1) Im
   \caption{Differences in Pipeline; Yellow boxes indicates the image processing procedures; Blue indicates the feature extraction procedures; Violet indicates the classification procedures.} \label{trgVSeval}
 \end{figure}
 
-For Coinsy to be a proficient counter, we have to first train it. The processes that Coinsy goes through for training differs from evaluation as described in figure \autoref{trgVSeval}. We will describe her training in the next section - \hyperlink{method}{methodology}, and her \hyperlink{resut}{evaluation results} after. Lastly, we conclude with a \hyperlink{discussion}{discussion on Coinsy performance}.
+For Coinsy to be a proficient detector, classifier and counter, we have to first train it. The training processes differs from evaluation as described in figure \autoref{trgVSeval} - the operation pipeline for training and evaluation. We will describe the methods that we use for each of these subtasks in the next section - \hyperlink{method}{methodology}, and her \hyperlink{resut}{evaluation results} after. Lastly, we conclude with a \hyperlink{discussion}{discussion on Coinsy performance}. The code for the project is listed in the appendix.
 
-In the following subsections, we give an overview of the operation pipeline for each subtasks. The approach here is an abstract idea of what we did for our base model. Additional techniques were explored and will be discussed in later section.
+In the following subsections, we give an brief description of the operation pipeline for each subtasks from training to testing. The approach here is an abstract idea of what we did for our base model. Additional techniques were explored and will be discussed in later section. We start by understanding the data.
 
-\subsection{Data} \label{sec:Data}
-The data we were given are images (split into two dataset - \texttt{harder} and \texttt{simpler}) with objects in the foreground for us to classify. The objects differ in colors and some are very similar to the background - such as 1 pound coins (see \autoref{montage_data}). Hence, the classifier must be invariant to rotation of objects, and importantly to detect the objects will the images to be processed, such that the objects are salient to the computer vision. The real challenge lies in segmentation of the image.
+\subsection*{Data} \label{sec:Data}
+The data we were given are 14 images (consisting of 5 \texttt{harder} and 6 \texttt{simpler images}). Each consists of objects in the foreground for us to classify and calculate the values. The class labels and its repecitve oobject and values are as follow:
+
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+  \hline
+  Class & Object & Value\\
+  \hline
+  1 & 1 Pound coin          & 1 pound\\
+  2 & 2 Pound coin          & 2 pound\\
+  3 & 50 Pence coin         & 50 pence\\
+  4 & 20 Pence coin         & 20 pence\\
+  5 & 5 Pence coin          & 5 pence\\
+  6 & Washer with small hole & 75 pence\\
+  7 & Washer with large hole & 25 pence\\
+  8 & Angle bracket         & 2 pence\\
+  9 & AAA Battery           & no value \\
+  10 & Nut                  & no value \\
+  11 & unknown              & - \\
+  \hline
+\end{tabular}
+\end{center}
+
+The objects differ in colors, size and shapes; some are very similar to the background - such as 1 pound coins (see \autoref{montage_data}). Hence, the classifier must be invariant to rotation of objects, and importantly to detect the objects will the images to be processed, such that the objects are salient to the computer vision. The real challenge lies in segmentation of the image.
 
 \begin{figure}[!h]
   \centering
@@ -62,6 +84,10 @@ The data we were given are images (split into two dataset - \texttt{harder} and 
   \caption{Sample images after their background is subtracted.}
   \label{montage_data_bgremove}
 \end{figure}
+
+
+
+
 
 \subsection{Image Processing}
 The image processing step aims to 1) make all images (for training the model or for evaluation) comparable, 2) extract objects in the foreground (also known as image segmentation). The outcome of this stage is an array of subimages ready for feature extraction.
