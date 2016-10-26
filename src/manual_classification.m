@@ -3,9 +3,10 @@
 
 %% Param
 cmap = {[1 .8 0];[1 0 .25],'y';'m';'b';'r';'c';'g';'w';'k'};
-total_images =+ num_subimg;
-total_classified =+ classified;
-total_removed =+ removed;
+total_images = 0;
+total_classified = 0;
+total_removed = 0;
+DATA = struct(); % FOR STORING ALL THE SAMPLES!
 
 
 %%
@@ -43,31 +44,29 @@ for i=1:num_imgs % for each images:
         end
         
         PROP{i}.Properties(obj).Class = class; % irrelevant class is 404
+%         DATA(i,num_subimg).Class        = class;
+%         DATA(i,num_subimg).ColoredImage = img_org;
+%         DATA(i,num_subimg).BWImage      = img_BW;
         
-%         if relevance
-%             % Update the prop:
-%             PROP{i}.Class(obj) = class;
-%             PROP{i}.FLAG(obj) = 0; % dont remove
-%         else 
-%             % FLAG for removal
-%             PROP{i}.FLAG(obj) = 1;
-%         end
-
     end
     
-    % TRIM THE DATASET even further!
-    PROP{i} % display some info for the picture...
-    
+    %% TRIM THE DATASET even further!
     % Irrelevant classes will be removed!
     irrel = [PROP{i}.Properties.Class] == 404; % get matrix of flag
-    PROP{i}.SubImages(irrel) = [];
-    PROP{i}.Properties(irrel) = [];
+    PROP{i}.SubImages(irrel)    = [];
+    PROP{i}.Properties(irrel)   = [];
     
-    classified = sum(~irrel);
-    removed = sum(irrel);
-    PROP{i}.num_of_obj = classified; % update number of training example left
+    classified          = sum(~irrel);
+    removed             = sum(irrel);
+    PROP{i}.num_of_obj  = classified; % update number of training example left
     disp('>>Prune - IRRELEVANT'); %% DEBUG
     PROP{i}
+    
+    total_images        =+ num_subimg;
+    total_classified    =+ classified;
+    total_removed       =+ removed;
+    
+    
 
     fprintf('SUMMARY:\n# Sub Images : %d / %d\n# Classified : %d / %d\n# Removed : %d / %d\n',...
                 num_subimg, total_images, classified, total_classified,...
