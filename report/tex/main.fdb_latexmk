@@ -1,15 +1,7 @@
 # Fdb version 3
-["bibtex tex/main"] 1477479841 "tex/main.aux" "tex/main.bbl" "tex/main" 1477480281
-  "/usr/share/texlive/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "references.bib" 1477233741 26 637a5985bf4279b9417fc7bca0a48447 ""
-  "tex/main.aux" 1477480281 1489 ab2df2d8be0f1695bd1df1748d3f6d3d ""
-  "tex/main.bcf" 0 -1 0 ""
-  (generated)
-  "tex/main.bbl"
-  "tex/main.blg"
-["pdflatex"] 1477480281 "main.tex" "/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.pdf" "main" 1477480281
+["pdflatex"] 1477480783 "main.tex" "/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.pdf" "main" 1477480783
   "/etc/texmf/web2c/texmf.cnf" 1476190565 1101 af7716885e081ab43982cab7b4672c1a ""
-  "/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.aux" 1477480281 1489 ab2df2d8be0f1695bd1df1748d3f6d3d ""
+  "/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.aux" 1477480783 1543 e99cf22f5bbfdb245fc915d09a81f314 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -165,18 +157,17 @@
   "appendix.tex" 1477233820 119 a8000de25323770d5c704e0972d509c1 ""
   "flowchart.demo.tex" 1477480277 820 c5ca7fff36a90d171220d40e68ae83ea ""
   "flowchart.trg.tex" 1477480254 1250 03a5a405f1320891bda08e01ad3fb9a3 ""
-  "intro.tex" 1477479836 2155 17798752cf854550eefb2138d5800b60 ""
-  "main.tex" 1477479541 432 133b567c74fa460419e759176a3439b9 ""
+  "intro.tex" 1477480779 1922 c515ceb3631f25cfefc81608259a96d3 ""
+  "main.tex" 1477480725 436 fced91a2d46502eaa19eb2cadf30884c ""
   "methodology.tex" 1477234280 132 9bdecac31ae30158e1f8cd3d92662a87 ""
   "mystyle.sty" 1477480104 1986 9d740422fcaf9344f90f592479d0c876 ""
   "result.tex" 1477233902 102 65116c2e61c44016f64d557d69362a5b ""
-  "tex/main.aux" 1477480281 1489 ab2df2d8be0f1695bd1df1748d3f6d3d ""
-  "tex/main.bbl" 1477479841 49 0eba253fc001332e731e8aba3f23127b "bibtex tex/main"
-  "tex/main.out" 1477480281 322 9a6155e3ee4222d3e7dc6869602ef6b0 ""
+  "tex/main.aux" 1477480783 1543 e99cf22f5bbfdb245fc915d09a81f314 ""
+  "tex/main.out" 1477480783 322 9a6155e3ee4222d3e7dc6869602ef6b0 ""
   (generated)
+  "/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.pdf"
   "tex/main.pdf"
+  "tex/main.log"
   "tex/main.out"
   "tex/main.aux"
-  "/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.pdf"
-  "tex/main.log"
   "/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.log"

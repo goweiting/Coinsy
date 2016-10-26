@@ -251,7 +251,6 @@ INPUT intro.tex
 INPUT intro.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./flowchart.trg.tex
 INPUT ./flowchart.trg.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
@@ -274,8 +273,6 @@ INPUT result.tex
 INPUT result.tex
 INPUT appendix.tex
 INPUT appendix.tex
-INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/main.bbl
-INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/main.bbl
 INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/main.aux
 INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/main.out
 INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/main.out

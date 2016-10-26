@@ -7,35 +7,28 @@
 % In this report, we will describe the \hyperlink{method}{methods} we used, \hyperlink{result}{results} of our coin counter - Coinsy, followed by \hyperlink{discussion}{discussions} on the program. The code for coinsy is attached in the \hyperlink{appendix}{appendix}.
 
 \par
-To recognise and count the coins in an image, Coinsy, have three subtasks: 1) Image processing, 2) Object recognition, and 3) Classifiation (and then counting the coins).
-For Coinsy to be a proficient counter, we have to first train it. The processes that Coinsy goes through for training differs from evaluation as described in \href{trgVSeval}{figure \ref*{trgVSeval}}. We will describe her training in the next section - \hyperlink{method}{methodology}, and her \hyperlink{resut}{evaluation results} after. Lastly, we conclude with a \hyperlink{discussion}{discussion on Coinsy performance}.
+To recognise and count the coins in an image, Coinsy, have three subtasks: 1) Image processing (includes image segmentation and smoothing), 2) Feature Extraction, and 3) Classifiation (and then counting the coins).
 
 \begin{figure}[!t]
   \begin{subfigure}[!b]{0.5\textwidth}
     \centering
     \resizebox{\linewidth}{!}{\subfile{./flowchart.trg.tex}}
-    \caption{Operation pipeline to train Coinsy}
+    \caption{Operation pipeline to train Coinsy} \label{trgPipe}
   \end{subfigure}
   \begin{subfigure}[!b]{0.5\textwidth}
     \centering
     \resizebox{\linewidth}{!}{\subfile{./flowchart.demo.tex}}
-    \caption{Pipeline for (trained) Coinsy to count coins}
+    \caption{Pipeline for (trained) Coinsy to count coins} \label{evalPipe}
   \end{subfigure}
-  \label{trgVSeval}
+  \caption{Differences in Pipeline} \label{trgVSeval}
 \end{figure}
+
+
+For Coinsy to be a proficient counter, we have to first train it. The processes that Coinsy goes through for training differs from evaluation as described in figure \autoref{trgVSeval}. We will describe her training in the next section - \hyperlink{method}{methodology}, and her \hyperlink{resut}{evaluation results} after. Lastly, we conclude with a \hyperlink{discussion}{discussion on Coinsy performance}.
+
 
 In the following subsections, we give an overview of the operation pipeline for each subtasks.
 
-% \begin{wrapfigure}{r}{1\textwidth}
-%   \label{trgVSeval}
-%   \vspace{-20pt}
-%   \begin{center}
-%     \subfile{./flowchart.demo.tex}
-%   \end{center}
-%   \vspace{-20pt}
-%   % \caption{Flowchart for testing coinsy (such as during demo}
-%   \vspace{-10pt}
-% \end{wrapfigure}
 
 \subsection{Image Processing}
 For all images that Coinsy receives, a series of preprocessing will be carried our for images to be comparable, followed by background subtraction and image segmentation. The output of this task are the The background is built using

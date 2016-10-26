@@ -249,7 +249,6 @@ INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/intro.out
 OUTPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/intro.out
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./flowchart.trg.tex
 INPUT ./flowchart.trg.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
@@ -264,9 +263,10 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT ./flowchart.demo.tex
 INPUT ./flowchart.demo.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/intro.aux
 INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/intro.out
 INPUT /home/goweiting/Documents/IVR/01a.CW1/report/tex/intro.out

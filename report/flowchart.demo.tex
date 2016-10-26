@@ -3,16 +3,22 @@
 
 \begin{document}
 \begin{tikzpicture} [scale=.2, node distance=.3cm, start chain=going below]
-
+  %% DATA
+  \node[punktchain, join] (Data)
+    {Given data:
+    \begin{itermize}
+    \item 9 simpler images
+    \item 5 harder images
+    \end{itermize}}
   %% PREPROCESSING
-  \node[preprocessing, join] (normalisation)
-      {Normalisation of image (RGB channel)};
+  \node[imageprocess, join] (normalisation)
+      {Normalisation of image};
   %% SEGMENTATION
-  \node[segmentation, join] (bg_subtract)
+  \node[imageprocess, join] (bg_subtract)
       {Background Subtraction};
-	\node[segmentation, join] (thresholding)
+	\node[imageprocess, join] (thresholding)
       {Thresholding};
-	\node[segmentation, join] (segment)
+	\node[imageprocess, join] (segment)
       {Find edges and extract regions};
 	\node[classification, join] (features)
       {Extract properties};
