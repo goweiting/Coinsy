@@ -27,30 +27,6 @@ bg_model = bg_extract(IMGS_BG, WINDOW_SIZE);
 
 fprintf('\n'); disp(bar);
 
-
-
-imshow(bg_model);
-export_fig('norm_1.png');
-disp(bar);
-
-WINDOW_SIZE = 3;
-fprintf('\n>> Generating Background Model With WINDOW_SIZE = %d\n', WINDOW_SIZE);
-bg_model = bg_extract(IMGS_BG, WINDOW_SIZE);
-
-fprintf('\n'); disp(bar);
-imshow(bg_model);
-export_fig('norm_3.png');
-disp(bar);
-
-WINDOW_SIZE = 5;
-fprintf('\n>> Generating Background Model With WINDOW_SIZE = %d\n', WINDOW_SIZE);
-bg_model = bg_extract(IMGS_BG, WINDOW_SIZE);
-
-fprintf('\n'); disp(bar);
-imshow(bg_model);
-export_fig('norm_5.png');
-
-
 %% BACKGROUND SUBTRACTION
 disp(bar);
 

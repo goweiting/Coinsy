@@ -2,7 +2,19 @@
 %   USER CLASSIFY THE SUBIMAGES
 
 %% Param
-cmap = {[1 .8 0];[1 0 .25],'y';'m';'b';'r';'c';'g';'w';'k'};
+color1 = [1 .8 0];
+color2 = [1 0 .25];
+cmap = [0.80369089,  0.61814689,  0.46674357;
+        0.81411766,  0.58274512,  0.54901962;
+        0.58339103,  0.62000771,  0.79337179;
+        0.83529413,  0.5584314 ,  0.77098041;
+        0.77493273,  0.69831605,  0.54108421;
+        0.72078433,  0.84784315,  0.30039217;
+        0.96988851,  0.85064207,  0.19683199;
+        0.93882353,  0.80156864,  0.4219608 ;
+        0.83652442,  0.74771243,  0.61853136;
+        0.7019608 ,  0.7019608 ,  0.7019608];
+% cmap = {color1;color2,'y';'m';'b';'r';'c';'g';'w';'k'};
 total_images = 0;
 total_classified = 0;
 total_removed = 0;
@@ -83,7 +95,7 @@ for i=1:num_imgs % for each images:
     for obj=1:PROP{i}.num_of_obj % draw the boundary box with differernt color
         boundary = PROP{i}.SubImages(obj).BoundingBox;
         class  = PROP{i}.Properties(obj).Class;
-        disp(cmap{class});
+        disp(cmap(class,:));
         rectangle('Position', boundary, 'EdgeColor', cmap{class}, 'LineWidth', 2);
     end
     s = sprintf('./imgs/manual_classy/manual_clas_pic#%d.(%s).png',i,t);
