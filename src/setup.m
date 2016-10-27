@@ -2,17 +2,15 @@
 clc,clf,clear all; close all;
 
 % add all relevant folders && misc stuff
-addpath('filters/', 'image_processing/', 'segmentation/', 'classification/', ...
-            'dataset/', 'imgs/', '../misc/export_fig.package/'); 
-addpath('../../../MATLAB/Add-Ons/altmany-export_fig-f0af704/');
-%     'classification/COUNT/1POUND','classification/COUNT/20P/',...
-%     'classification/COUNT/25P/','classification/COUNT/2P/','classification/COUNT/2POUND/',...
-%     'classification/COUNT/50P/','classification/COUNT/5P/','classification/COUNT/75P/',...
-%     'classification/DONT_COUNT/AAA/','classification/DONT_COUNT/NUT/');
+addpath('filters/', 'image_processing/', 'classification/', ...
+            'dataset/', 'imgs/', 'features'); 
+addpath('../misc/export_fig.package/');
 
 bar = '=========================================================';
 barbar = '---------------------------------------------------------';
 
+disp(bar);
+fprintf('\t\tIMPORTING IMAGES\n');
 % add all given images for traiing
 % ? SHOULD we add the harder ones too?
 img2    = imread('../practice/simpler/02.jpg');
@@ -34,4 +32,13 @@ img15   = imread('../practice/harder/21.jpg');
 
 IMGS_BG = {img2, img3, img4, img5, img6, img7, img8, img9, img10, ... 
             img11, img12, img13, img14, img15 };
+% IMGS    = {img2, img3, img4, img5, img6, img7, img8, img9, img10, ... 
+%             img11, img12, img13, img14, img15 };
 [~, num_img_bg]  = size(IMGS_BG);
+fprintf('\t\t\t\t\t\t    done\n');
+%%
+tmp = input('Continue? [1/0] ');
+if ~tmp 
+   return
+end
+disp(bar);

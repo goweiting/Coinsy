@@ -2,8 +2,7 @@
 %   USER CLASSIFY THE SUBIMAGES
 
 %% Param
-color1 = [1 .8 0];
-color2 = [1 0 .25];
+% Color for each class
 cmap = [0.80369089,  0.61814689,  0.46674357;
         0.81411766,  0.58274512,  0.54901962;
         0.58339103,  0.62000771,  0.79337179;
@@ -13,96 +12,98 @@ cmap = [0.80369089,  0.61814689,  0.46674357;
         0.96988851,  0.85064207,  0.19683199;
         0.93882353,  0.80156864,  0.4219608 ;
         0.83652442,  0.74771243,  0.61853136;
-        0.7019608 ,  0.7019608 ,  0.7019608];
-% cmap = {color1;color2,'y';'m';'b';'r';'c';'g';'w';'k'};
-total_images = 0;
-total_classified = 0;
-total_removed = 0;
-DATA = struct(); % FOR STORING ALL THE SAMPLES!
+        0.7019608 ,  0.7019608 ,  0.7019608
+        244/255, 66/255, 66/255]; % Class 11
+total_instance = 0;
+total_relevant = 0;
+t = datetime('now'); % for image title
 
 
 %%
-for i=1:num_imgs % for each images:
+[~, num_instance] = size(DATA);
+for i=1:num_instance % for each datapoint:
     
-    num_subimg = PROP{i}.num_of_obj;
-    img_BIG = PROP{i}.ORIGINAL; % the big picture
-    
-    for obj=1:num_subimg % user have to classify each image in this picture
+    img_num     = DATA(i).ParentID;
+    img_BIG     = PROP{img_num}.ORIGINAL; % original big image
+    subimg      = DATA(i).ColoredImage;
+    bw_subimg   = DATA(i).Image;
+        
+    fprintf('\n\n\n\nObject %d/%d\n', i , num_instance);
+    close all; figure; % Close all opened windows
+        
+    % Plot the images
+    subplot(1,2,1); 
+    imshow(subimg);
+    subplot(1,2,2); 
+    imshow(bw_subimg);
 
-        img_org = PROP{i}.SubImages(obj).ColoredImage;
-        img_BW  = PROP{i}.SubImages(obj).Image;
-        
-        fprintf('\n\n\n\nObject %d\n',obj);
-        close all; figure; % Close all opened windows
-        
-        % Plot the images
-        subplot(1,2,1); 
-        imshow(img_org);
-        subplot(1,2,2); 
-        imshow(img_BW);
-        
-        % call function to for classification
-        [relevance, class] = user_classify(img_org, 0);
-        
-        % if user need help:
-       	while class == 0    
-            fig = figure;
-            imshow(img_BIG);
-            hold on;
-            rectangle('Position', PROP{i}.SubImages(obj).BoundingBox,... % draw rectangle around img
-                'EdgeColor', 'r', 'LineWidth',3);
-            [relevance, class] = user_classify(img_org, 0);
-            close ;
-        end
-        
-        PROP{i}.Properties(obj).Class = class; % irrelevant class is 404
-%         DATA(i,num_subimg).Class        = class;
-%         DATA(i,num_subimg).ColoredImage = img_org;
-%         DATA(i,num_subimg).BWImage      = img_BW;
-        
+    % call function to for classification
+    [relevance, class] = user_classify();
+    close all;
+    % if user need help, display the bigger image with a bounding box for object:
+    while class == 0
+        fig = figure;
+        imshow(img_BIG);
+        hold on;
+        rectangle('Position', DATA(i).BoundingBox,... % draw rectangle around img
+            'EdgeColor', 'r', 'LineWidth',3);
+        [relevance, class] = user_classify();
+        close all;
     end
     
-    %% TRIM THE DATASET even further!
-    % Irrelevant classes will be removed!
-    irrel = [PROP{i}.Properties.Class] == 404; % get matrix of flag
-    PROP{i}.SubImages(irrel)    = [];
-    PROP{i}.Properties(irrel)   = [];
+    DATA(i).Class = class; % store the class; irrelevant ones at 11
     
-    classified          = sum(~irrel);
-    removed             = sum(irrel);
-    PROP{i}.num_of_obj  = classified; % update number of training example left
-    disp('>>Prune - IRRELEVANT'); %% DEBUG
-    PROP{i}
-    
-    total_images        =+ num_subimg;
-    total_classified    =+ classified;
-    total_removed       =+ removed;
-    
-    
+    % SAVE THE IMAGE 
+    imshow(subimg); 
+    s = sprintf('./imgs/CLASS_%d/%s_%d.png', class, t, num_instance);
+    export_fig(s); 
+    close;
 
-    fprintf('SUMMARY:\n# Sub Images : %d / %d\n# Classified : %d / %d\n# Removed : %d / %d\n',...
-                num_subimg, total_images, classified, total_classified,...
-                removed, total_removed);
-            
-    %% DISPLAY
-    close all; figure;
-    imshow(img_BIG);
-    t=datetime('now');
-    titl = sprintf('Classification for picture %d (%s)',i,t);
-    title(titl);
-    hold on;
-    
-    for obj=1:PROP{i}.num_of_obj % draw the boundary box with differernt color
-        boundary = PROP{i}.SubImages(obj).BoundingBox;
-        class  = PROP{i}.Properties(obj).Class;
-        disp(cmap(class,:));
-        rectangle('Position', boundary, 'EdgeColor', cmap{class}, 'LineWidth', 2);
-    end
-    s = sprintf('./imgs/manual_classy/manual_clas_pic#%d.(%s).png',i,t);
-    export_fig(s);
-    tmp = 0;
-    while ~tmp
-        tmp = input('Ready?[1/0]');
-    end
-    
 end
+    
+%% DISPLAY and drawings
+close all; figure;
+imshow(img_BIG);
+titl = sprintf('Classification for picture %d (%s)',i,t);
+title(titl);
+hold on;
+[~,num_imgs] = size(PROP); % num of images
+
+ID = [DATA.ParentID];
+for i=1:num_imgs % draw the boundary box with differernt color for each image
+    close all;
+    
+    list_ = ID == i; % logical
+    data_class = DATA(list_); 
+    img_BIG = PROP{i}.ORIGINAL;
+    img_BW = PROP{i}.THRESH;
+    imshow(img_BW); hold on;
+    for  n=1:sum(list_)  % draw the boundary on BW image
+        boundary    = data_class(n).BoundingBox;
+        class       = data_class(n).Class;
+%         disp(cmap(class,:));
+        rectangle('Position', boundary, 'EdgeColor', cmap(class,:), 'LineWidth', 2);
+        s = sprintf('./imgs/manual_classy/manual_clas_pic#%d_BW.(%s).png',i,t);
+        export_fig(s);
+    end
+    
+    close all; % repeat for colored images
+    imshow(img_BIG);
+    for  n=1:sum(list_)  % draw the boundary on BW image
+        boundary    = data_class(n).BoundingBox;
+        class       = data_class(n).Class;
+%         disp(cmap(class,:));
+        rectangle('Position', boundary, 'EdgeColor', cmap(class,:), 'LineWidth', 2);
+        s = sprintf('./imgs/manual_classy/manual_clas_pic#%d_BW.(%s).png',i,t);
+        export_fig(s);
+    end
+end
+
+
+%% Delete Class 11 instances
+class_list  = [DATA.Class];
+logica_     = [class_list == 11];
+DATA(logica_) = [];
+[~,init_size]   = size(class_list);
+[~,after_size]  = size(DATA);
+fprintf('Number of datapoints removed (class 11) = %d\n', init_size - after_size);

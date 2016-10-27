@@ -13,23 +13,23 @@ function p = gaussianDistr(mean_, cov_, prior, data)
 
 %% generate Probability;
 
-% diff = data' - mean_';
-% dist = diff*cov_*diff';
-% n = length(data);
-% wgt = 1/sqrt(det(inv(cov_)));
-% p = prior * ( 1 / (2*pi)^(n/2) ) * wgt * exp(-0.5*dist);
-% disp(p); %% DEBUG
+diff = data - mean_;
+dist = diff*cov_*diff';
+n = length(data);
+wgt = 1/sqrt(det(inv(cov_)));
+p = prior * ( 1 / (2*pi)^(n/2) ) * wgt * exp(-0.5*dist);
+disp(p); %% DEBUG
 % 
 % 
-[A,D] = size(cov_);
-mean_ = mean_'; % assume data and mean is presented as row vector
-data  = data';
-
-logDet = (-.5) * logdet(cov_); 
-firstPart = (-.5) * ((data - mean_)' / cov_) * (data - mean_);
-prior = log(prior); 
-
-% calculate the probability using the formula:
-p = firstPart + logDet + prior;
+% [A,D] = size(cov_);
+% mean_ = mean_'; % assume data and mean is presented as row vector
+% data  = data';
+% 
+% logDet = (-.5) * logdet(cov_); 
+% firstPart = (-.5) * ((data - mean_)' / cov_) * (data - mean_);
+% prior = log(prior); 
+% 
+% % calculate the probability using the formula:
+% p = firstPart + logDet + prior;
 
 end

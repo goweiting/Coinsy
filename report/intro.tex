@@ -26,29 +26,29 @@ For Coinsy to be a proficient detector, classifier and counter, we have to first
 In the following subsections, we give an brief description of the operation pipeline for each subtasks from training to testing. The approach here is an abstract idea of what we did for our base model. Additional techniques were explored and will be discussed in later section. We start by understanding the data.
 
 \subsection*{Data} \label{sec:Data}
-The data we were given are 14 images (consisting of 5 \texttt{harder} and 6 \texttt{simpler images}). Each consists of objects in the foreground for us to classify and calculate the values. The class labels and its repecitve oobject and values are as follow:
+The data we were given are 14 images (consisting of 5 \texttt{harder} and 9 \texttt{simpler images}). Each consists of objects in the foreground for us to classify and calculate the values. The class labels and its respective object and value are as follow:
 
 \begin{center}
-\begin{tabular}{ |c|c|c| }
-  \hline
-  Class & Object & Value\\
-  \hline
-  1 & 1 Pound coin          & 1 pound\\
-  2 & 2 Pound coin          & 2 pound\\
-  3 & 50 Pence coin         & 50 pence\\
-  4 & 20 Pence coin         & 20 pence\\
-  5 & 5 Pence coin          & 5 pence\\
-  6 & Washer with small hole & 75 pence\\
-  7 & Washer with large hole & 25 pence\\
-  8 & Angle bracket         & 2 pence\\
-  9 & AAA Battery           & no value \\
-  10 & Nut                  & no value \\
-  11 & unknown              & - \\
-  \hline
-\end{tabular}
+  \begin{tabular}{ |c|c|c| }
+    \hline
+    Class & Object & Value\\
+    \hline
+    1 & 1 Pound coin            & 1 pound\\
+    2 & 2 Pound coin            & 2 pound\\
+    3 & 50 Pence coin           & 50 pence\\
+    4 & 20 Pence coin           & 20 pence\\
+    5 & 5 Pence coin            & 5 pence\\
+    6 & Washer with small hole  & 75 pence\\
+    7 & Washer with large hole  & 25 pence\\
+    8 & Angle bracket           & 2 pence\\
+    9 & AAA Battery             & - \\
+    10 & Nut                    & - \\
+    11 & unknown                & - \\
+    \hline
+  \end{tabular}
 \end{center}
 
-The objects differ in colors, size and shapes; some are very similar to the background - such as 1 pound coins (see \autoref{montage_data}). Hence, the classifier must be invariant to rotation of objects, and importantly to detect the objects will the images to be processed, such that the objects are salient to the computer vision. The real challenge lies in segmentation of the image.
+The objects differ in colors, size and shapes; some are very similar to the background - such as 1 pound coins (see \autoref{montage_data}). Hence, the features extracted must be invariant to rotation, and importantly to detect the objects will the images to be processed, such that the objects are salient to the computer vision. On top of the images itself output from \verb+imshow+ or \verb+imagesc+, we can understand an image from the distribution of the pixel intensities (such as a histogram) and its gradient magnitude in each channel.
 
 \begin{figure}[!h]
   \centering
@@ -86,96 +86,20 @@ The objects differ in colors, size and shapes; some are very similar to the back
 \end{figure}
 
 
-
-
-
-\subsection{Image Processing}
+\subsection*{Image Processing}
 The image processing step aims to 1) make all images (for training the model or for evaluation) comparable, 2) extract objects in the foreground (also known as image segmentation). The outcome of this stage is an array of subimages ready for feature extraction.
 
-The central idea is to, first, model the background before subtracting it from all images; second - make the edges of the objects 'obvious' by thresholding; third - crop out the objects to obtain the subimages. This is one of the many image segmentation technique available, and further exploration of other techniques is discussed later.
+The central idea is to, first, model the background before subtracting it from all images; second - make the edges of the objects 'obvious' by finding a suitable threshold to binarise the image; third - crop out the objects to obtain the subimages, which will be our data points.
 
-\subsubsection*{Background Subtraction}
-In this coursework, since a background image is not readily available, we have to model it. Noting that images varies in illumination, we have to make the images comparable by normalising it first, using the following formula.
-$$ P_{r,c}(R',G',B')=(\frac{R}{\sqrt(R^2+G^2+B^2)},\frac{G}{\sqrt(R^2+G^2+B^2)},\frac{B}{\sqrt(R^2+G^2+B^2)})$$
+\subsection*{Feaure Extraction}
+Given the subimages, this stage aims to represent each subimages with a feature vector that contains properties to adequately describe the class it belongs to (or shape). Notaby, we have many circular objects varying in size. This renders global descriptors such as convexity and elongation less useful for these classes.
 
-With objects scattered around randomly in the images, we find the median of all image pixels for each channel separately in order to reconstruct the background.
+\subsection*{Classification}
+The task here is to label an unknown (sub)image given its set of feature vector. The model we consider is a multivarate gaussian classifier that classify an image based on the parameters of each class (class mean and standard deviation (or variance)). This multivarate gaussian classifier outputs the posterior probability of a given feature vector $x$ ($P(C_{k}|X)$) for each class $k$, with the class giving the highest probability being the label. That is $x.class = argmax_{k} P(C_{k}|x)$.
 
-The outcome of the background with and without normalisation is shown in \autoref{bg_model}.
+A slight tweak for Coinsy is her ability to reject the class label output by the classifier if the highest probability falls out of her confidence interval. In such cases, Coinsy will intervene and change the class to unknown (class 11).
 
-\begin{figure}[!h]
-  \centering
-  \begin{subfigure}[b]{.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{./img/bg_model/org_1.png}
-    \caption{Background model without normalisation}
-  \end{subfigure}
-  \begin{subfigure}[b]{.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{./img/bg_model/norm_1.png}
-    \caption{Background model after normalisation}
-  \end{subfigure}
-  \caption{Background model generated from all 14 images}
-  \label{bg_model}
-\end{figure}
-
-
-% Our approach is similar, but uses a neighbourhood of pixels around a target point. Hence, for a window of size 3, we have
-% $bg\_model_{r,c} = median(i_{r+1,c+1}, i_{r+1,c}, i_{r+1,c-1},
-%                           i_{r,c+1}, i_{r,c}, i_{r,c-1},
-%                           i_{r-1,c+1}, i_{r-1,c}, i_{r-1,c-1}) $.
-%
-% The outcome of the background (with and without normalisation) are:
-%
-% \begin{figure}[!h]
-%   \centering
-%   \begin{subfigure}[t]{\textwidth}
-%     \centering
-%     \begin{subfigure}[t]{.3\textwidth} %% taking median
-%         \centering
-%         \includegraphics[width=\textwidth]{./img/bg_model/org_1.png}
-%     \end{subfigure}
-%     \begin{subfigure}[t]{.3\textwidth} %% window_size = 3
-%         \centering
-%         \includegraphics[width=\textwidth]{./img/bg_model/org_3.png}
-%     \end{subfigure}
-%     \begin{subfigure}[t]{.3\textwidth} %% window_size = 5
-%         \centering
-%         \includegraphics[width=\textwidth]{./img/bg_model/org_5.png}
-%     \end{subfigure}
-%   \end{subfigure} %% LOWER IMAGE - NORMALISED
-%   \begin{subfigure}[b]{\textwidth}
-%     \centering
-%     \begin{subfigure}[t]{.3\textwidth} %% taking median
-%         \centering
-%         \includegraphics[width=\textwidth]{./img/bg_model/norm_1.png}
-%         \caption{Neighbouhood=1}
-%     \end{subfigure}
-%     \begin{subfigure}[t]{.3\textwidth} %% window_size = 3
-%         \centering
-%         \includegraphics[width=\textwidth]{./img/bg_model/norm_3.png}
-%         \caption{Neighbourhood=3}
-%     \end{subfigure}
-%     \begin{subfigure}[t]{.3\textwidth} %% window_size = 5
-%         \centering
-%         \includegraphics[width=\textwidth]{./img/bg_model/norm_5.png}
-%         \caption{Neighbourhood=5}
-%     \end{subfigure}
-%   \end{subfigure}
-%   \caption{Sample images from given data.}
-%   \label{montage_bg}
-% \end{figure}
-
-
-The sample images with their background removed is shown in \autoref{montage_data_bgremove}. It is evident that the background removal process removed the background - making the images appearing black. However, it also inevitably reduce the intensity for the bottom half of each images, such that the objects are no longer salient to our eyes. This is because the background we modelled have a lower intensity at the bottom, possibly due to presence of shadow in all 14 images.
-
-Nevertheless, the historgram  is still bimodal, which is essential for thresholding to be effective.
-
-\subsubsection*{Segmentation}
-
-
-
-\subsection{Classification}
-
+The last step of Coinsy is to sum the value of all the objects she managed to identify from a given image.
 
 
 \end{document}

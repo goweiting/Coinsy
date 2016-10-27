@@ -1,4 +1,4 @@
-function[ CM, Per ] = findConfusion(result, test_class)
+function[ CM, Per ] = findConfusion(result, test_class, num_class, p_limit)
 %% findConfusion
 % INPUT: [targets, output]
 %   S = number of features ( in this case, 10)
@@ -27,7 +27,7 @@ end
 %% create the confusion matrix
 % Row = actual
 % column = predicted
-cm = zeros(10,10);
+cm = zeros(num_class, num_class); % dont need to show cm for class 11
 
 % iterate through all the test data to add data into the confusion matrix
 for q=(1:Q)
@@ -46,7 +46,7 @@ for q=(1:Q)
 end
 
 %% manipulate the cm to get per:
-per = zeros(10,4);
+per = zeros(num_class,4); % ignore the unclassified class here
 % each row corresponds to each class
 %         per(i,1) false negative rate
 %                   = (false negatives)
@@ -58,14 +58,13 @@ per = zeros(10,4);
 %                   = (true negatives)
 
 % for each class find the FN, FP, TP, TN respectively.
-for s=(1:10)
+for s=(1:num_class)
     % generate the data;
     TP = cm(s,s);
-    FP = sum(cm(:,s)) - TP; % sum of the column belonging to class s, minus Tp
-    FN = sum(cm(s,:)) - TP; % sum of the row belong to class s, minus TP
+    FP = sum(cm(:,s)) - TP;
+    FN = sum(cm(s,:)) - TP; 
     TN = sum(sum(cm)) - TP - FN - FP;
-%     allNegative = FN + TN;
-%     allPositive = TP + FP;
+
     % store the values
     per(s,1) = FN;
     per(s,2) = FP;
@@ -76,11 +75,29 @@ end
 CM = cm;
 Per = per;
 
-% RETURN AS TABLES:
-% rowNames = {'No_1','No_2','No_3','No_4','No_5','No_6','No_7','No_8',...
-%                 'No_9','No_0'};
-% CM = array2table(cm, 'VariableNames', rowNames, 'RowNames', rowNames);
-% headings = {'FN', 'FP', 'TP', 'TN'};
-% Per = array2table(per, 'VariableNames', headings, 'RowNames', rowNames);
+%% 
+figure; imshow(CM, [], 'InitialMagnification', 1600); colormap(bone);
+title('Confusion Matrix for Testing Set');
+
+fprintf('Done!\n\nThe confusion matrix is:\n(rows = actual class; columns = predicted class)\n');
+disp(CM);
+fprintf('\nThe classification results for each class are:\n   (FN    FP    TP   TN)\n');
+disp(per);
+
+disp('========================================================');
+fprintf('Summary:\nClassification using full gaussian model\n');
+FN = sum(per(:,1));
+FP = sum(per(:,2));
+TP = sum(per(:,3));
+TN = sum(per(:,4));
+incorrect = FP + FN;
+correct = TP;
+acc_score = TP/ Q; % Q = number of obervation
+
+fprintf('Number Incorrect = %d\n', incorrect);
+fprintf('Number Correct = %d\n', correct);
+fprintf('Number Unclassified (lesser than p = %.2f) = %d\n',p_limit, Per(11,1) );
+fprintf('Accuracy = %3f percent\n\n', acc_score);
+disp('========================================================');
 
 end
