@@ -1,4 +1,4 @@
-function [relevance, class] = user_classify(IMG, SAVE)
+function [relevance, class] = user_classify()
 %% USER_CLASSIFY(IMG)
 %   Given an img, ask the user which class it belongs to
 
@@ -12,6 +12,7 @@ if relevance
     fprintf('[1] 1 POUND  [2] 2 POUND  [3] 50 P  [4] 20 P  [5] 5 P\n')
     fprintf('[6] 75 P (washer w small hole)  [7] 25 P (washer w large hole)\n');
     fprintf('[8] 2 P (angle bracket)\n[9] AAA battery (no val)  [10] nut (no value)\n');
+%     fprintf('[11] HELP!! (will display the bigger picture)\n\n');
     fprintf('[0] HELP!! (will display the bigger picture)\n\n');
     prompt = '>>  ';
     class = input(prompt);
@@ -24,7 +25,7 @@ if relevance
     
     fprintf('\n===\n')
 else
-    class = 404;
+    class = 11;
 end
 
 

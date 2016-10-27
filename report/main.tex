@@ -9,16 +9,16 @@
 \date{\today}
 
 \begin{document}
+\maketitle
+\subfile{intro}
+\newpage
+% sections:
+\subfile{methodology}\newpage
+\subfile{result}\newpage
+\subfile{appendix}\newpage
 
-  \maketitle
-
-  \subfile{intro}
-  % sections:
-  \subfile{methodology}
-  \subfile{result}
-  \subfile{appendix}
-
-  \bibliographystyle{apalike}
-  \bibliography{references}
+\nocite{*}
+\bibliographystyle{unsrtnat}
+\bibliography{references}
 
 \end{document}

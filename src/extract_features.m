@@ -13,55 +13,64 @@
 % 4) IMG_THRESH     : the BW images thresholded. The objects are in white/1
 
 %%
-[~, num_imgs] = size(IMG_THRESH);
+[~, num_imgs] = size(IMGS_THRESH);
 PROP ={}; % define an array to hold the structs for each images
+DATA = struct(); % struct to hold all the subimages
+num_instance = 1; % counter for number of instances
 
-for i=1:num_imgs % create the structs for each sample images
+% iterate through all the images to extract the subimages and its properties
+for i=1:num_imgs 
+    
+    fprintf('image %d ',i);
     
     % here, get the label from the threshold image, and extract information
-    % about each label, store in Properties
-    %!!! for manual adding, use PROP{i}.prop(OBJ_NUM).<label> = <value> %%
-    [L, num]    = bwlabel(IMG_THRESH{i}, 8);
-    imagery     = regionprops(L, 'BoundingBox', 'ConvexHull', 'ConvexImage',...
-                    'FilledImage', 'Image','Centroid'); % this is the BW image!
-    scalar      = regionprops(L, 'Area','ConvexArea','Eccentricity', ...
-                    'EquivDiameter','EulerNumber', 'Extent', 'FilledArea', ...
-                    'MajorAxisLength', 'MinorAxisLength', 'Perimeter', 'Solidity');
+    % about each region
+    [L, ~]      = bwlabel(IMGS_THRESH{i}, 4); %% THIS IS A PARAMETER TO PLAY WITH
+    imagery     = regionprops(L, 'BoundingBox','Image'); % this is the BW image!
+    scalar      = regionprops(L, 'MajorAxisLength', 'MinorAxisLength', 'Area');
     
     % remove regions with small pixel area, which may be blobs:
-    bad = [scalar.Area] <= 500;
-    scalar(bad)     = [];
+    bad = [scalar.Area] <= 300;
+    scalar(bad)     = []; % remove these instances 
     imagery(bad)    = [];
-    disp('prune - Area<=500'); %% DEBUG
+    disp('prune - Area<=300'); %% DEBUG
     
-    [num , ~] = size(imagery); % update the number of instances left!
+    [num_subimages , ~] = size(imagery); % update the number of instances left!
         
     % grab the colored subimages, and calculate the complex moments,..etc, 
     % for ease of classification:
-    vect = struct();
-    for n=1:num
+    for n=1:num_subimages
+        
         org_img     = IMGS{i}; % get the original image
         boundary    = imagery(n).BoundingBox; % find the boundary
         subImg      = imcrop(org_img, boundary); % crop the original image according to boundary
-        imagery(n).ColoredImage = subImg;  % assign into the struct
         
         % calculate the moments by calling classification/getProperties
-        scalar(n).Features = getFeatures(imagery(n), scalar(n));
+        DATA(num_instance).Features         = getFeatures(imagery(n), scalar(n));
+        DATA(num_instance).ColoredImage     = subImg;
+        DATA(num_instance).BoundingBox      = imagery(n).BoundingBox;
+        DATA(num_instance).Image            = imagery(n).Image;
+        DATA(num_instance).MajorAxisLength  = scalar(n).MajorAxisLength;
+        DATA(num_instance).MinorAxisLength  = scalar(n).MinorAxisLength;
+        DATA(num_instance).ParentID         = i;
+        DATA(num_instance).Class            = 0; % set to 0 = unclassified
+        
+        fprintf('%d  ',num_instance);
+        num_instance = num_instance + 1;
     end
     
     % store in struct
     PROP{i} = struct('label', L, ...
-                'num_of_obj', num, ... 
+                'num_of_obj', num_subimages, ... 
                   'ORIGINAL', IMGS{i},...
-                    'THRESH', IMG_THRESH{i},...
+                    'THRESH', IMGS_THRESH{i},...
                  'SubImages', imagery,...
                 'Properties', scalar);
-                    
+    
+    fprintf('\t\tDone\n');
 end
 
-%% Clasify yeahh?
-man_class = input('do you want to manually classify these images now? [0/1]');
-if man_class
-    manual_classification;
-end
+% clear boundary;
+% clear imagery;
+% clear scalar;
 %%

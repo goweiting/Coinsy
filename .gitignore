@@ -1,3 +1,6 @@
 **/*.mat
 !**/dataset/*
 **/imgs/**
+**/tex/**
+*.gx
+**.m~

@@ -1,0 +1,40 @@
+\documentclass[main.tex,tikz]{subfiles}
+% CREATE THE FLOWCHART FOR DEMO:
+
+\begin{document}
+\begin{tikzpicture}  [scale=.2, node distance=.3cm, start chain=going below]
+  %% DATA
+  \node[punktchain, join] (data)
+    {Given data (\verb+IMGS_BG+)};
+  %% Preprocessing
+  \node[imgprocessing, join] (normalisation)
+      {Normalisation of sample images};
+	\node[imgprocessing, join] (bg_extract)
+    {Extract Background (\verb+bg_model+)};
+  %% Image segmentation
+  \node[imgprocessing, join] (bg_subtract)
+      {Background Subtraction };
+	\node[imgprocessing, join] (thresholding)
+      {Thresholding\\Find edges };
+	\node[imgprocessing, join] (segment)
+      {Extract regions (subimages)};
+  %% Feat Extract
+	\node[featextract, join] (features)
+      {Extract properties (\verb+DATA+)};
+  %% Training Classifier
+  \node[classification, join] (manual_clf)
+      {Muanually classify all regions};
+  \node[classification, join] (classifier)
+      {Generate Deataset - Training and Testing;\\Parameter Estimation Using Training set for Multivarate Gaussian Model};
+  \node[classification, join] (counting)
+      {Evaluate model, fine-tuning parameters};
+  \node[classification, join] (counting)
+      {Evaluate model with test set};
+
+  \node[punktchain, join] (next_job)
+      {Ready for testing};
+
+
+\end{tikzpicture}
+
+\end{document}

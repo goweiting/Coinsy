@@ -2,13 +2,104 @@
 
 % Packages we will be using:
 \usepackage{import}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{graphicx}
 \graphicspath{{./img}}
 \usepackage{listings}
+\usepackage[T1]{fontenc}          % change font encoding to T1
+\usepackage[framed,numbered]{matlab-prettifier}
+% \lstinputlisting[
+%   style      = Matlab-editor,
+%   basicstyle = \mlttfamily,
+% ]{sample.m}
 \usepackage{subfiles}
 \usepackage{hyperref}
 \usepackage{verbatim}
 \usepackage{setspace}
 \setstretch{1.2} % set 1.5 line spacing
 \setlength{\parskip}{1em}
+\usepackage{enumitem}
+\usepackage{dirtree} % for drawing directory tree
+\usepackage{dingbat}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{float}
+\floatstyle{plain}
+\restylefloat{figure}
+
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+% for drawing diagram
+% adapted from http://www.texample.net/tikz/examples/assignment-structure/
+\usepackage{tikz}
+\usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
+    decorations.pathreplacing,decorations.pathmorphing,shapes,%
+    matrix,shapes.symbols}
+\tikzset{
+>=stealth',
+  %% STANDARD BOXES
+  punktchain/.style={
+    rectangle,
+    rounded corners,
+    % fill=yellow!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  % preprocessing/.style={
+  %   rectangle,
+  %   rounded corners,
+  %   fill=gray!10,
+  %   draw=black, very thick,
+  %   text width=\textwidth,
+  %   minimum height=2em,
+  %   text centered,
+  %   on chain},
+  imgprocessing/.style={
+    rectangle,
+    rounded corners,
+    fill=yellow!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  featextract/.style={
+    rectangle,
+    rounded corners,
+    fill=blue!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  classification/.style={
+    rectangle,
+    rounded corners,
+    fill=violet!10,
+    draw=black, very thick,
+    text width=\textwidth,
+    minimum height=2em,
+    text centered,
+    on chain},
+  line/.style={draw, thick, <-},
+  element/.style={
+    tape,
+    top color=white,
+    bottom color=blue!50!black!60!,
+    minimum width=8em,
+    draw=blue!40!black!90, very thick,
+    text width=10em,
+    minimum height=3.5em,
+    text centered,
+    on chain},
+  every join/.style={->, thick,shorten >=1pt},
+  decoration={brace},
+  tuborg/.style={decorate},
+  tubnode/.style={midway, right=2pt},
+}
