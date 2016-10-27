@@ -1,13 +1,169 @@
-\documentclass[main.tex]{article}
+documentclass[main.tex]{article}
 
 \begin{document}
 \newpage
 \appendix \label{appendix}
 
-\section{For training - }
-% \lstinputlisting[
-%   style      = Matlab-editor,
-%   basicstyle = \mlttfamily,
-% ]{../src/segmentation.m}
+\section{Scripts}
+In this section, all the scripts used to call other scripts and/or functions are presented. Some fuunctions are matlab's native functions.
+
+\subsubsection*{\hypertarget{training}{training.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/training.m}
+
+\subsubsection*{\hypertarget{setup}{setup.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/setup.m}
+
+\subsubsection*{\hypertarget{extractfeat}{extract\_features.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/extract_features.m}
+
+\subsubsection*{\hypertarget{setup}{setup.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/setup.m}
+
+\subsubsection*{\hypertarget{manclf}{manual\_classification.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/manual_classification.m}
+
+\subsubsection*{\hypertarget{trainclf}{trainclf\_loglikelihood.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/trainclf_loglikelihood.m}
+
+\subsubsection*{\hypertarget{main}{main.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/main.m}
+
+
+\section{Image Processing}
+
+\subsubsection*{\hypertarget{normRGB}{normalise\_RGB.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/image_processing/normalise_RGB.m}
+
+\subsubsection*{\hypertarget{bgextract}{bg\_extract.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/image_processing/bg_extract.m}
+
+\subsubsection*{\hypertarget{bgsub}{bg\_subtraction.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/image_processing/bg_subtraction.m}
+
+\subsubsection*{\hypertarget{dothresh}{dothresh.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/image_processing/dothresh.m}
+
+
+\section{Feature Extraction}
+\subsubsection*{\hypertarget{getfeatures}{getFeatures.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/features/getFeatures.m}
+
+\subsubsection*{\hypertarget{rawmoment}{rawmoment.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/features/rawmoment.m}
+
+\subsubsection*{\hypertarget{centralmoment}{centralmoment.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/features/centralmoment.m}
+
+\subsubsection*{\hypertarget{simoment}{SI\_moment.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/features/SI_moment.m}
+
+\subsubsection*{\hypertarget{complex}{complexmoment.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/features/complexmoment.m}
+
+\section{Classification}
+\subsubsection*{\hypertarget{splitdata}{split\_data.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/classification/split_data.m}
+
+\subsubsection*{\hypertarget{userclf}{user\_classify.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/classification/user_classify.m}
+
+\subsubsection*{\hypertarget{findconf}{findConfusion.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/classification/findConfusion.m}
+
+\subsubsection*{\hypertarget{gaussianDistr}{gaussianDistr.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/classification/gaussianDistr.m}
+
+\subsubsection*{\hypertarget{gaussianclf}{gaussian\_clf.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/classification/gaussian_clf.m}
+
+
+\section{Basic Filters}
+
+\subsubsection*{\hypertarget{medianfilter}{median\_filter.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/filters/median_filter.m}
+
+\subsubsection*{\hypertarget{medianfiliter}{median\_filter\_iter.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/filters/median_filter_iter.m}
+
+\subsubsection*{\hypertarget{gaussfilter}{gaussian\_filter\_1d.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/filters/gaussian_filter_1d.m}
+
+\subsubsection*{\hypertarget{gauss2d}{gaussian\_filter\_2d.m}}
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../src/filters/gaussian_filter_2d.m}
 
 \end{document}
