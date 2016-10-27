@@ -33,7 +33,7 @@ end
 %% Do hold-out validation:
 % 50% for training, 25% for validation 25% for test
 [X_train, X_valid, X_test, y_train, y_valid, y_test] = ...
-    split_data(X, y, .5, 0, .5);
+    split_data(X, y, .80, 0, .20);
 
 %% TRAINING THE CLASSIFIER:
 % GROUP IN CLASS AND PARAMETER ESTIMATION:
@@ -56,7 +56,7 @@ for i = 1:num_class % create a DATA_CLASS for each class
     reg = exp(-10);
     reg_term = eye(length(cov_)) * reg;
     cov_ = cov_ + reg_term; % add regularisation
-    disp(cov_);
+%     disp(cov_);
     
     % store the parameters
     DATA_CLASS{i} = struct('Data', data, 'Prior', prior_, ...
@@ -72,8 +72,8 @@ end
 % title('Confusion Matrix for Validation Set');
 
 %% Testing
-p_limit = 0;
-[y_test_pred,~] = gaussian_clf(X_test, DATA_CLASS, p_limit);
+% p_limit = 0;
+[y_test_pred, prob] = gaussian_clf(X_test, DATA_CLASS);
 
 % Generate Statistics:
 [cm_test, per] = findConfusion(y_test_pred, y_test, 11, p_limit);

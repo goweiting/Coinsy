@@ -21,7 +21,7 @@ end
 
 if show
     
-    clf;
+    figure;
 
     subplot(1,3,1);
     imshow(img);

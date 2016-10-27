@@ -4,7 +4,12 @@ function vec = getFeatures(image, prop)
 %   properties extracted: 
 %       1) Area
 %       2) Perimeter
-%       3) 
+%       3) compactness
+%       4) rectangularity
+%       5) elongation
+%       6) hu moment invariant
+%       7) complex invariant
+
 Image = image.Image;
 
 [H,W] = size(Image);
@@ -50,7 +55,7 @@ ci6 = 1000000*imag(tmp);
 
 %ci=[ci1,ci2,ci3,ci4,ci5,ci6]
 
-vec = [area_, perim, compactness_ , rectangularity, elongation, hu_invariant, ...
+vec = [area_, perim, compactness_ , rectangularity, elongation, ...
         ci1, ci2, ci3, ci4, ci5, ci6]; % 18 features
 
 

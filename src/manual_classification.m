@@ -68,7 +68,6 @@ titl = sprintf('Classification for picture %d (%s)',i,t);
 title(titl);
 hold on;
 [~,num_imgs] = size(PROP); % num of images
->>>>>>> report
 
 ID = [DATA.ParentID];
 for i=1:num_imgs % draw the boundary box with differernt color for each image
@@ -84,9 +83,9 @@ for i=1:num_imgs % draw the boundary box with differernt color for each image
         class       = data_class(n).Class;
 %         disp(cmap(class,:));
         rectangle('Position', boundary, 'EdgeColor', cmap(class,:), 'LineWidth', 2);
-        s = sprintf('./imgs/manual_classy/manual_clas_pic#%d_BW.(%s).png',i,t);
-        export_fig(s);
     end
+    s = sprintf('./imgs/manual_classy/manual_clas_pic#%d_BW.(%s).png',i,t);
+    export_fig(s);
 
     close all; % repeat for colored images
     imshow(img_BIG);

@@ -61,6 +61,27 @@ sizeparam = 10;
 fprintf('Selected sizeparam = %d\n', sizeparam);
 [IMGS_THRESH, thresh_vals] = dothresh(IMGS_BGREMOVE, sizeparam);
 
+%% EXPERIMENTAL
+% for i=1:9 
+%     % EXPERIMENT BY FINDING EDGE OF ORIGINAL IMAGE
+%     gray = rgb2gray(IMGS{i});
+%     [IMGS_THRESH{i}, thresh_vals{i}] = edge(gray, 'sobel');
+%     s = sprintf('imgs/normalised_img_bgremove/org_gray_sobel.%d.png',i);
+%     imshow(IMGS_THRESH{i});
+%     export_fig(s);
+%     close all;
+% end
+% 
+% for i=1:9
+%     % EXPERIMENT BY FINDING EDGE OF NORMALISED BACKGROUND REMOVED IMAGES
+%     gray = rgb2gray(IMGS_BGREMOVE{i});
+%     [IMGS_THRESH{i}, thresh_vals{i}] = edge(gray, 'sobel');
+%     s = sprintf('imgs/normalised_img_bgremove/norm_bgrmv_sobel.%d.png',i);
+%     imshow(IMGS_THRESH{i});
+%     export_fig(s);
+%     close all;
+% end
+
 fprintf('\nIMGS_THRESH and thresh_vals added\n\n');
 fprintf('\t\t\t\t\t\t    done\n');
 tmp = input('Continue? [1/0] ');
@@ -69,16 +90,9 @@ if ~tmp
     return
 else
     disp(bar);
-%     extract_features;
 end
 
 disp(bar);
-
-fprintf('\n>> Doing morphing...\nbwmorph(img,erode,1)\n');
-% [~, num_img] =size(IMGS_THRESH);
-% for i = 1:num_img
-%     IMGS_THRESH
-% end
 %% NOTE:
 % AT this stage, we have threshold all our training set.
 % call another script for feature extraction

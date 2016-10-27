@@ -37,40 +37,44 @@
 \newlabel{bg_model}{{4}{9}{Background model generated from all 14 images.\relax }{figure.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Background extraction with different neighbourhood size.\relax }}{9}{figure.5}}
 \newlabel{montage_bg}{{5}{9}{Background extraction with different neighbourhood size.\relax }{figure.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Classification}{10}{subsection.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Result}{11}{section.3}}
-\newlabel{result}{{3}{11}{Result}{section.3}{}}
-\newlabel{appendix}{{}{13}{}{section.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Scripts}{13}{appendix.A}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/training.m}{13}{lstlisting.-1}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/setup.m}{14}{lstlisting.-2}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/extract\textunderscore features.m}{16}{lstlisting.-3}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/setup.m}{19}{lstlisting.-4}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/manual\textunderscore classification.m}{20}{lstlisting.-5}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/trainclf\textunderscore loglikelihood.m}{24}{lstlisting.-6}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/main.m}{27}{lstlisting.-7}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Image Processing}{30}{appendix.B}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/normalise\textunderscore RGB.m}{30}{lstlisting.-8}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/bg\textunderscore extract.m}{31}{lstlisting.-9}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/bg\textunderscore subtraction.m}{36}{lstlisting.-10}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/dothresh.m}{38}{lstlisting.-11}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Feature Extraction}{42}{appendix.C}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/features/getFeatures.m}{42}{lstlisting.-12}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/features/rawmoment.m}{43}{lstlisting.-13}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/features/centralmoment.m}{44}{lstlisting.-14}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/features/SI\textunderscore moment.m}{45}{lstlisting.-15}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/features/complexmoment.m}{45}{lstlisting.-16}}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Classification}{47}{appendix.D}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/classification/split\textunderscore data.m}{47}{lstlisting.-17}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/classification/user\textunderscore classify.m}{48}{lstlisting.-18}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/classification/findConfusion.m}{49}{lstlisting.-19}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/classification/gaussianDistr.m}{53}{lstlisting.-20}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/classification/gaussian\textunderscore clf.m}{54}{lstlisting.-21}}
-\@writefile{toc}{\contentsline {section}{\numberline {E}Basic Filters}{57}{appendix.E}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/filters/median\textunderscore filter.m}{57}{lstlisting.-22}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/filters/median\textunderscore filter\textunderscore iter.m}{58}{lstlisting.-23}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/filters/gaussian\textunderscore filter\textunderscore 1d.m}{59}{lstlisting.-24}}
-\@writefile{lol}{\contentsline {lstlisting}{../src/filters/gaussian\textunderscore filter\textunderscore 2d.m}{61}{lstlisting.-25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Black white images of normalised sample images with background removed.\relax }}{10}{figure.6}}
+\newlabel{bin_image}{{6}{10}{Black white images of normalised sample images with background removed.\relax }{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Black white images of sample images after morphological gradient edge detection and thresholding. As the operator is background independent and does not require us to model the background first, the objects are more obvious now.\relax }}{11}{figure.7}}
+\newlabel{bin_morph}{{7}{11}{Black white images of sample images after morphological gradient edge detection and thresholding. As the operator is background independent and does not require us to model the background first, the objects are more obvious now.\relax }{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Classification}{11}{subsection.2.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Result}{12}{section.3}}
+\newlabel{result}{{3}{12}{Result}{section.3}{}}
+\newlabel{appendix}{{}{14}{}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Scripts}{14}{appendix.A}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/training.m}{14}{lstlisting.-1}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/setup.m}{15}{lstlisting.-2}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/extract\textunderscore features.m}{17}{lstlisting.-3}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/setup.m}{20}{lstlisting.-4}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/manual\textunderscore classification.m}{21}{lstlisting.-5}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/trainmultivarate.m}{25}{lstlisting.-6}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/main.m}{28}{lstlisting.-7}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Image Processing}{34}{appendix.B}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/normalise\textunderscore RGB.m}{34}{lstlisting.-8}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/bg\textunderscore extract.m}{35}{lstlisting.-9}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/bg\textunderscore subtraction.m}{40}{lstlisting.-10}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/image\textunderscore processing/dothresh.m}{42}{lstlisting.-11}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Feature Extraction}{46}{appendix.C}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/features/getFeatures.m}{46}{lstlisting.-12}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/features/rawmoment.m}{48}{lstlisting.-13}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/features/centralmoment.m}{48}{lstlisting.-14}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/features/SI\textunderscore moment.m}{49}{lstlisting.-15}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/features/complexmoment.m}{49}{lstlisting.-16}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Classification}{51}{appendix.D}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/classification/split\textunderscore data.m}{51}{lstlisting.-17}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/classification/user\textunderscore classify.m}{52}{lstlisting.-18}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/classification/findConfusion.m}{53}{lstlisting.-19}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/classification/gaussianDistr.m}{57}{lstlisting.-20}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/classification/gaussian\textunderscore clf.m}{58}{lstlisting.-21}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Basic Filters}{61}{appendix.E}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/filters/median\textunderscore filter.m}{61}{lstlisting.-22}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/filters/median\textunderscore filter\textunderscore iter.m}{62}{lstlisting.-23}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/filters/gaussian\textunderscore filter\textunderscore 1d.m}{63}{lstlisting.-24}}
+\@writefile{lol}{\contentsline {lstlisting}{../src/filters/gaussian\textunderscore filter\textunderscore 2d.m}{65}{lstlisting.-25}}
 \citation{*}
 \bibstyle{unsrtnat}
 \bibdata{references}

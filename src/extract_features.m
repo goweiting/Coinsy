@@ -9,7 +9,7 @@
 % the workspace:
 % 1) bg_model       : the background model we generated
 % 2) IMGS           : the original images (in cell array)
-% 3) IMG_BGREMOVE   : the original iamges bg removed
+% 3) IMG_BGREMOVE   : the original iamges bg recmoved
 % 4) IMG_THRESH     : the BW images thresholded. The objects are in white/1
 
 %%

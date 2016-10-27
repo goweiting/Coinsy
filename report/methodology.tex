@@ -134,14 +134,53 @@ After the background is removed, the objects are left in the image. Our next tas
   \item Produce a binary image, \texttt{BW}, using:$$BW_{r,c} = IMG_{r,c,R} || IMR_{r,c,G} || IMG_{r,c,B}$$
 \end{enumerate}
 
-The binary image indicates the existence of objects as 1 (white) and the background as 0 (black). \autoref{} are the binary images for the sample images.
+The binary image indicates the existence of objects as 1 (white) and the background as 0 (black). \autoref{bin_image} are the binary images for the sample images.
 
 %% INSERT IMAGE HERE!
+\begin{figure}[!h]
+  \centering
+  \begin{subfigure}[b]{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/normalised_img_bgremove/norm_bgrmv_thresh1.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/normalised_img_bgremove/norm_bgrmv_thresh3.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/normalised_img_bgremove/norm_bgrmv_thresh2.png}
+  \end{subfigure}
+  \caption{Black white images of normalised sample images with background removed.}
+  \label{bin_image}
+\end{figure}
 
-This thresholding algorithm works fine when the histogram produced is bimodal. However,
+\subsubsection*{Morphological Gradient Edge Detection}
+Another model that we tried out, which performed better, is the morphological gradient edge detector. Using a structuring element B (such as a disk with 5 pixel radius), we first find the  image A dilated with B and image A eroded with B separately. Then we subtract the two. Since the background is largely the same for both outcomes, the subtraction of each other will remove the background and retain the edges of each objects in the foreground.
+
+We used \texttt{matalb} built in function to createa structuring element with disk radius of 3 pixels, and dilate and erode a given image. After the subtraction, we use the same thresholding function to get the binary image. The outcome of this operation is shown in \autoref{bin_morph}.
+
+\begin{figure}[!h]
+  \centering
+  \begin{subfigure}[b]{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/morph_thresh/edges_morph_thresh1.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/morph_thresh/edges_morph_thresh3.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/morph_thresh/edges_morph_thresh2.png}
+  \end{subfigure}
+  \caption{Black white images of sample images after morphological gradient edge detection and thresholding. As the operator is background independent and does not require us to model the background first, the objects are more obvious now. And the centre sample image does not appaer to be a mess.}
+  \label{bin_morph}
+\end{figure}
+
 % ====================================================================== %
 \subsubsection*{Filtering}
-
+There are numerous filtering technique to make images better. One that we considered during the project is median filtering, and iterative median filtering. The aim is to preserve the edges while removing the noise in the background by find the median of the neighbourhood of the pixel. With the latter, the image undergoes any number of iteration until no visible change is observed. In our function, we utilised the \texttt{matlab} function \texttt{medfilt2}.
 
 \subsection{Classification}
 
