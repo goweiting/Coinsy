@@ -1,4 +1,9 @@
 %% SCRIPT FOR IMAGE PROCESSING
+%   1) Normalise all images
+%   2) Extract backgrund from normalised images
+%   3) Subtract background from the images
+%   4) threshold images to get BW image
+
 %% PRE-PROCESSING%%
 fprintf('\t\tPREPROCESSING IMAGES\n');
 %% NORMALISATION

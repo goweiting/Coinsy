@@ -33,18 +33,20 @@ for i=1:num_imgs
     bad = [scalar.Area] <= 300;
     scalar(bad)     = []; % remove these instances 
     imagery(bad)    = [];
-    disp('prune - Area<=300'); %% DEBUG
+    fprintf('>> Prune - Area<=300: Img %d\noriginal # = %d\n new # =\n removed = %d',...
+                i, length(bad), length(bad)-sum(bad), sum(bad)); %% DEBUG
     
     [num_subimages , ~] = size(imagery); % update the number of instances left!
         
     % grab the colored subimages, and calculate the complex moments,..etc, 
     % for ease of classification:
+    fprintf('Extracting features...\n');
     for n=1:num_subimages
         
         org_img     = IMGS{i}; % get the original image
         boundary    = imagery(n).BoundingBox; % find the boundary
         subImg      = imcrop(org_img, boundary); % crop the original image according to boundary
-        
+
         % calculate the moments by calling classification/getProperties
         DATA(num_instance).Features         = getFeatures(imagery(n), scalar(n));
         DATA(num_instance).ColoredImage     = subImg;
@@ -55,9 +57,10 @@ for i=1:num_imgs
         DATA(num_instance).ParentID         = i;
         DATA(num_instance).Class            = 0; % set to 0 = unclassified
         
-        fprintf('%d  ',num_instance);
+        fprintf('%d  ',num_instance); % display the instance number
         num_instance = num_instance + 1;
     end
+    
     
     % store in struct
     PROP{i} = struct('label', L, ...
@@ -66,11 +69,8 @@ for i=1:num_imgs
                     'THRESH', IMGS_THRESH{i},...
                  'SubImages', imagery,...
                 'Properties', scalar);
-    
-    fprintf('\t\tDone\n');
+    fprintf('\t\t\t\tDone\n');
 end
-
-% clear boundary;
-% clear imagery;
-% clear scalar;
-%%
+fprintf('\nDATA (contain all subimages) and PROP (contain all images with their properties) added\n\n');
+disp(bar)
+%% NEXT >> MANUAL CLASSIFICATION OF SUBIMAGES

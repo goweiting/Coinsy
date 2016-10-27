@@ -1,24 +1,24 @@
 %% Script for classification of subimages
 %   USER CLASSIFY THE SUBIMAGES
-
+clc;
+disp(bar);
+fprintf('>> Manual Classification of subimages\n');
 %% Param
 % Color for each class
-cmap = [0.80369089,  0.61814689,  0.46674357;
-        0.81411766,  0.58274512,  0.54901962;
-        0.58339103,  0.62000771,  0.79337179;
-        0.83529413,  0.5584314 ,  0.77098041;
-        0.77493273,  0.69831605,  0.54108421;
-        0.72078433,  0.84784315,  0.30039217;
-        0.96988851,  0.85064207,  0.19683199;
-        0.93882353,  0.80156864,  0.4219608 ;
-        0.83652442,  0.74771243,  0.61853136;
-        0.7019608 ,  0.7019608 ,  0.7019608
-        244/255, 66/255, 66/255]; % Class 11
+cmap = [1   0   0;      % red - class 1
+        1   1   0;      % yellow - class 2
+        51/255, 102/255, 0; % dark green - class 3
+        0   1   0;      % green - class 4
+        0   1   1;      % cyan - class 5
+        0   0   1;      % blue - class 6
+        152/255, 51/255 1; % purple - class 7
+        1   51/255  1;  % pink - class 8
+        .5   0   .5;      % purple - class 9
+        .5  0   0;      % Maroon - clas 10
+        0   0   0];     % black - Class 11
 total_instance = 0;
 total_relevant = 0;
 t = datetime('now'); % for image title
-
-
 %%
 [~, num_instance] = size(DATA);
 for i=1:num_instance % for each datapoint:
@@ -54,7 +54,11 @@ for i=1:num_instance % for each datapoint:
     DATA(i).Class = class; % store the class; irrelevant ones at 11
 
     % SAVE THE IMAGE
+    subplot(1,2,1);
     imshow(subimg);
+    subplot(1,2,2);
+    imshow(bw_subimg);
+    % save image into the respective class folder (timestamped)
     s = sprintf('./imgs/CLASS_%d/%s_%d.png', class, t, num_instance);
     export_fig(s);
     close;
@@ -74,25 +78,24 @@ for i=1:num_imgs % draw the boundary box with differernt color for each image
     close all;
 
     list_ = ID == i; % logical
-    data_class = DATA(list_);
+    data_ = DATA(list_);
     img_BIG = PROP{i}.ORIGINAL;
     img_BW = PROP{i}.THRESH;
     imshow(img_BW); hold on;
+    
     for  n=1:sum(list_)  % draw the boundary on BW image
-        boundary    = data_class(n).BoundingBox;
-        class       = data_class(n).Class;
-%         disp(cmap(class,:));
+        boundary    = data_(n).BoundingBox;
+        class       = data_(n).Class;
         rectangle('Position', boundary, 'EdgeColor', cmap(class,:), 'LineWidth', 2);
     end
     s = sprintf('./imgs/manual_classy/manual_clas_pic#%d_BW.(%s).png',i,t);
     export_fig(s);
 
     close all; % repeat for colored images
-    imshow(img_BIG);
+    imshow(img_BIG); hold on;
     for  n=1:sum(list_)  % draw the boundary on BW image
-        boundary    = data_class(n).BoundingBox;
-        class       = data_class(n).Class;
-%         disp(cmap(class,:));
+        boundary    = data_(n).BoundingBox;
+        class       = data_(n).Class;
         rectangle('Position', boundary, 'EdgeColor', cmap(class,:), 'LineWidth', 2);
         s = sprintf('./imgs/manual_classy/manual_clas_pic#%d_BW.(%s).png',i,t);
         export_fig(s);
@@ -100,10 +103,13 @@ for i=1:num_imgs % draw the boundary box with differernt color for each image
 end
 
 
-%% Delete Class 11 instances
+%% Delete Class 11 instances - in black box in images
+fprintF('Prune subimages which are marked for removal (irrelevant)\n');
 class_list  = [DATA.Class];
 logica_     = [class_list == 11];
 DATA(logica_) = [];
 [~,init_size]   = size(class_list);
 [~,after_size]  = size(DATA);
 fprintf('Number of datapoints removed (class 11) = %d\n', init_size - after_size);
+disp(bar);
+%% NEXT >> Training the classifier

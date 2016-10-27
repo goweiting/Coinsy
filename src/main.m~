@@ -111,7 +111,8 @@ while start
     bad = [scalar.Area] <= 300;
     scalar(bad)     = []; % remove these instances 
     imagery(bad)    = [];
-    fprintf('>> Prune - Area<=300: Number of subimages removed = %d\n', sum(bad));
+    left = NUM - sum(bad);
+    fprintf('>> Prune - Area<=300: Number of subimages left = %d\n', left);
     
     [num_subimages , ~] = size(imagery); % update the number of instances left!
     
@@ -130,10 +131,10 @@ while start
         TEST(n).ColoredImage     = subImg;
         TEST(n).BoundingBox      = imagery(n).BoundingBox;
         TEST(n).Image            = imagery(n).Image;
-        TEST(n).MajorAxisLength  = scalar(n).MajorAxisLength;
-        TEST(n).MinorAxisLength  = scalar(n).MinorAxisLength;
-        TEST(n).ParentID         = i;
-        TEST(n).Class            = 0; % set to 0 = unclassified
+        TEST(num_instance).MajorAxisLength  = scalar(n).MajorAxisLength;
+        TEST(num_instance).MinorAxisLength  = scalar(n).MinorAxisLength;
+        TEST(num_instance).ParentID         = i;
+        TEST(num_instance).Class            = 0; % set to 0 = unclassified
         
         fprintf('%d  ',num_instance); % display the instance number
         num_instance = num_instance + 1;
@@ -164,12 +165,10 @@ while start
         error('data_class is not present!');
     end
     
-    X_test = [];
-    y_test = [];
     % gather all the features in X_test:
     [~, num_instance] = size(TEST);
     for im=1:num_instance
-        X_test = [X_test; TEST(im).Features];
+        X_test = [X; TEST(im).Features];
     end
     
     % y_test_pred is a vector of classes predicted for each token
@@ -200,7 +199,7 @@ while start
     for i=1:length(y_test_pred)
         boundary = TEST(i).BoundingBox;
         class    =  y_test_pred(i);
-        fprintf('class = %d\n',class);
+        fprintf('class = %d',class);
         rectangle('Position', boundary, 'EdgeColor', cmap(class,:), 'LineWidth', 1);
         
     end
@@ -233,24 +232,27 @@ while start
         class = y_test_pred(i);
         counter = counter + values(class);
     end
+    
+    fprintf('Total Amount in image = %f', counter);
+  
+    
+    disp(barbar); disp(bar); fprintf('\n\n');
 
 %%  Part 5: Summary Statistics:
     disp(bar); disp(barbar);
     disp('SUMMARY STATISTICS');
 
 % Expect something like:
-fprintf('number of 1 pound \t= %d\n', sum(y_test_pred == 1));
-fprintf('number of 2 pound \t= %d\n', sum(y_test_pred == 2));
-fprintf('number of 50 pence \t= %d\n', sum(y_test_pred == 3));
-fprintf('number of 20 pence \t= %d\n', sum(y_test_pred == 4));
-fprintf('number of 5 pence \t= %d\n', sum(y_test_pred == 5));
-fprintf('number of 75 pence \t= %d\n', sum(y_test_pred == 6));
-fprintf('number of 25 pence \t= %d\n', sum(y_test_pred == 7));
-fprintf('number of 2 pence \t= %d\n', sum(y_test_pred == 8));
-fprintf('number of AAA Battery \t= %d\n', sum(y_test_pred == 9));    
-fprintf('number of Nut \t\t= %d\n', sum(y_test_pred == 10));    
-disp(barbar);
-fprintf('Total Amount in image = %.2f\n', counter);
+fprintf('number of 1 pound = %d\n', sum(y_test_pred == 1));
+fprintf('number of 2 pound = %d\n', sum(y_test_pred == 2));
+fprintf('number of 50 pence = %d\n', sum(y_test_pred == 3));
+fprintf('number of 20 pence = %d\n', sum(y_test_pred == 4));
+fprintf('number of 5 pence = %d\n', sum(y_test_pred == 5));
+fprintf('number of 75 pence = %d\n', sum(y_test_pred == 6));
+fprintf('number of 25 pence = %d\n', sum(y_test_pred == 7));
+fprintf('number of 2 pence = %d\n', sum(y_test_pred == 8));
+fprintf('number of AAA Battery = %d\n', sum(y_test_pred == 9));    
+fprintf('number of Nut = %d\n', sum(y_test_pred == 10));    
     disp(barbar); disp(bar); fprintf('\n\n');
 
 %% Next image?

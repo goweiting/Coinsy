@@ -13,7 +13,7 @@ function [prediction, prob_all] = gaussian_clf(X_test, DATA_CLASS, p_limit)
 %%
 
 num_class   = length(DATA_CLASS);
-num_sample  = length(X_test);
+[num_sample ,num_features] = size(X_test);
 
 prediction  = zeros(num_sample,1);
 prob_all    = zeros(num_sample, num_class);
