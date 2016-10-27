@@ -3,32 +3,45 @@
 \begin{document}
 \section{Methodology} \label{methodology}
 
-In this section we describe the techniques we considered and brainstormed during the project and those that are implemented in the base model.
+In this section we describe the techniques we considered and brainstormed during the project and those that are implemented.
 
+%  >{\centering}m{5cm}
 \begin{center}
-  \begin{table}[!htp]
-    \centering
-    \caption{Summary of techniques used for each tasks}
-    \begin{tabular}{*4c}
-      \toprule
-      Task            & Subtask      & Techniques &     Base Model \\
-      \midrule
-      Image Processing & {} & {} & {} \\
-      \hline
-      Feature Extraction  & Global Descriptors & asd &\checkmark \\
-      \hline
-      {} & {}             & Hu's Invariant moments & \checkmark \\
-      \hline
-      {} & {}             & Complex moments & \checkmark \\
-      \hline
-      Classification & {} & Multivarate Gaussian Model & \checkmark \\
-      {}             & {} & Linear Discriminant \\
-      \bottomrule
-    \end{tabular}
-  \end{table}
+  \begin{tabular}{p{2.22cm}|p{2.2cm}|p{.5\textwidth}| p{1.5cm} }
+    % >{\centering}m{1cm} | >{\centering}m{1cm} | >{\centering}m{1cm} | >{\centering}m{1cm} }
+    \toprule
+    Task            & Subtask      & Techniques &     Implmentation \\
+    \midrule
+    Image Processing & Background Model & Finding median for each pixel and each channel & \checkmark \\
+    {}  &  {} &   Finding median of neighbourhood for each pixel and each channel & \checkmark \\
+    {} & {} & Probabilistic Modeling of background & {} \\
+    \hline
+    {} & Thresholding & Finding minimum of bimodal distribution & \checkmark \\
+    {} & {} & Otsu's method for thresholding & {} \\
+    {} & {} & Using Gradient magnitude of image & {} \\
+    \hline
+    Feature Extraction  & Global Descriptors &
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+      \item Area
+      \item Perimeter
+      \item Compactness
+      \item Rectangularity
+      \item Elongation
+    \end{itemize} & \checkmark \\
+    \hline
+    {} & Moments             &
+    \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+      \item Hu's Invariant moments\newline(7 features)
+      \item Complex moments\newline(6 features)
+    \end{itemize}& \checkmark \\
+    \hline
+    Classification & - & Multivarate Gaussian Model & \checkmark \\
+    {}             & {} & Linear Discriminant & {}\\
+    \bottomrule
+  \end{tabular}
 \end{center}
 
-\subsubsection*{Background Subtraction}
+\subsubsection*{Background Modelling}
 In this coursework, since a background image is not readily available, we have to model it. Noting that images varies in illumination, we have to make the images comparable by normalising it first, using the following formula.
 $$ P_{r,c}(R',G',B')=(\frac{R}{\sqrt(R^2+G^2+B^2)},\frac{G}{\sqrt(R^2+G^2+B^2)},\frac{B}{\sqrt(R^2+G^2+B^2)})$$
 

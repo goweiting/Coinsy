@@ -3,11 +3,20 @@ entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**methodology.tex
+(./methodology.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 12 language(s) loaded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+(/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+Document Class: subfiles 2012/05/23 Federico Garcia
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks14
+\verbatim@line=\toks15
+\verbatim@in@stream=\read1
+)
+Preamble taken from file `main.tex'
+(./main.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
@@ -37,7 +46,7 @@ LaTeX Info: Redefining \cite on input line 694.
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks14
+\KV@toks@=\toks16
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
@@ -60,7 +69,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count89
 \lst@gtempboxa=\box26
-\lst@token=\toks15
+\lst@token=\toks17
 \lst@length=\count90
 \lst@currlwidth=\dimen105
 \lst@column=\count91
@@ -188,15 +197,10 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 \emHeight@mlpr=\skip45
 \jayDepth@mlpr=\skip46
 \sectionRuleOffset@mlpr=\skip47
-\toks@mlpr=\toks16
+\toks@mlpr=\toks18
 ) (/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
 Package: subfiles 2012/05/23 Federico Garcia
- (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
-Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks17
-\verbatim@line=\toks18
-\verbatim@in@stream=\read1
-)) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
@@ -234,7 +238,6 @@ Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
 Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
 Package: xcolor-patch 2011/01/30 xcolor patch
 Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
-Package atveryend Info: \enddocument detected (standard20110627).
 Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
@@ -242,6 +245,11 @@ Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+
+
+Package auxhook Warning: Cannot patch \document,
+(auxhook)                using \AtBeginDocument instead.
+
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
@@ -263,8 +271,7 @@ Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count103
-
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -641,29 +648,29 @@ File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
-)) (/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.aux)
-\openout1 = `main.aux'.
+)))) (/home/goweiting/Documents/IVR/01a.CW1/report/tex/methodology.aux)
+\openout1 = `methodology.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 3.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count144
@@ -690,7 +697,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count150
 \AtBeginShipoutBox=\box65
-Package hyperref Info: Link coloring OFF on input line 11.
+Package hyperref Info: Link coloring OFF on input line 3.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -698,74 +705,24 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count151
 )
-LaTeX Info: Redefining \ref on input line 11.
-LaTeX Info: Redefining \pageref on input line 11.
-LaTeX Info: Redefining \nameref on input line 11.
- (/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.out) (/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.out)
+LaTeX Info: Redefining \ref on input line 3.
+LaTeX Info: Redefining \pageref on input line 3.
+LaTeX Info: Redefining \nameref on input line 3.
+ (/home/goweiting/Documents/IVR/01a.CW1/report/tex/methodology.out) (/home/goweiting/Documents/IVR/01a.CW1/report/tex/methodology.out)
 \@outlinefile=\write4
-\openout4 = `main.out'.
+\openout4 = `methodology.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
  ABD: EveryShipout initializing macros
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 13.
+(Font)              <12> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 13.
- (./intro.tex (./flowchart.trg.tex
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 8.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)) (./flowchart.demo.tex)
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 11--21
-[][] [] 
- []
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+(Font)              <8> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 32.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 32.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 32.
- <./img/sample_fig/02.jpg, id=72, 642.4pt x 481.8pt>
-File: ./img/sample_fig/02.jpg Graphic file (type jpg)
- <use ./img/sample_fig/02.jpg>
-Package pdftex.def Info: ./img/sample_fig/02.jpg used on input line 57.
-(pdftex.def)             Requested size: 117.00119pt x 87.74948pt.
- <./img/sample_fig/04.jpg, id=73, 642.4pt x 481.8pt>
-File: ./img/sample_fig/04.jpg Graphic file (type jpg)
- <use ./img/sample_fig/04.jpg>
-Package pdftex.def Info: ./img/sample_fig/04.jpg used on input line 61.
-(pdftex.def)             Requested size: 117.00119pt x 87.74948pt.
- <./img/sample_fig/03.jpg, id=74, 642.4pt x 481.8pt>
-File: ./img/sample_fig/03.jpg Graphic file (type jpg)
- <use ./img/sample_fig/03.jpg>
-Package pdftex.def Info: ./img/sample_fig/03.jpg used on input line 65.
-(pdftex.def)             Requested size: 117.00119pt x 87.74948pt.
- <./img/bg_model/02_bgremove.png, id=75, 481.8pt x 361.35pt>
-File: ./img/bg_model/02_bgremove.png Graphic file (type png)
- <use ./img/bg_model/02_bgremove.png>
-Package pdftex.def Info: ./img/bg_model/02_bgremove.png used on input line 74.
-(pdftex.def)             Requested size: 117.00119pt x 87.7458pt.
- <./img/bg_model/04_bgremove.png, id=76, 481.8pt x 361.35pt>
-File: ./img/bg_model/04_bgremove.png Graphic file (type png)
- <use ./img/bg_model/04_bgremove.png>
-Package pdftex.def Info: ./img/bg_model/04_bgremove.png used on input line 78.
-(pdftex.def)             Requested size: 117.00119pt x 87.7458pt.
- <./img/bg_model/03_bgremove.png, id=77, 481.8pt x 361.35pt>
-File: ./img/bg_model/03_bgremove.png Graphic file (type png)
- <use ./img/bg_model/03_bgremove.png>
-Package pdftex.def Info: ./img/bg_model/03_bgremove.png used on input line 82.
-(pdftex.def)             Requested size: 117.00119pt x 87.7458pt.
+(Font)              <6> on input line 10.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[3 <./img/sample_fig/02.jpg> <./img/sample_fig/04.jpg> <./img/sample_fig/03.jpg>] [4 <./img/bg_model/02_bgremove.png (PNG copy)> <./img/bg_model/04_bgremove.png (PNG copy)> <./img/bg_model/03_bgremove.png (PNG copy)>] [5]) [6] (./methodology.tex
 Overfull \hbox (33.02042pt too wide) in paragraph at lines 13--14
 []|\T1/cmr/m/n/12 Implmentation| 
  []
@@ -803,103 +760,48 @@ Overfull \hbox (22.64021pt too wide) in paragraph at lines 10--42
  [] 
  []
 
-[7] <./img/bg_model/org_1.png, id=164, 456.95718pt x 342.5297pt>
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] <./img/bg_model/org_1.png, id=25, 456.95718pt x 342.5297pt>
 File: ./img/bg_model/org_1.png Graphic file (type png)
  <use ./img/bg_model/org_1.png>
 Package pdftex.def Info: ./img/bg_model/org_1.png used on input line 56.
 (pdftex.def)             Requested size: 175.49881pt x 131.54767pt.
- <./img/bg_model/norm_1.png, id=165, 481.8pt x 361.35pt>
+ <./img/bg_model/norm_1.png, id=26, 481.8pt x 361.35pt>
 File: ./img/bg_model/norm_1.png Graphic file (type png)
  <use ./img/bg_model/norm_1.png>
 Package pdftex.def Info: ./img/bg_model/norm_1.png used on input line 61.
 (pdftex.def)             Requested size: 175.49881pt x 131.62424pt.
- [8 <./img/bg_model/org_1.png (PNG copy)> <./img/bg_model/norm_1.png (PNG copy)>]) [9] (./result.tex) [10] (./appendix.tex [11]
-LaTeX Font Info:    Try loading font information for T1+fvm on input line 14.
- (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
-File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
-)
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 10.20007pt on input line 14.
- (../src/training.m
-LaTeX Font Info:    Font shape `T1/fvm/bx/n' in size <12> not available
-(Font)              Font shape `T1/fvm/b/n' tried instead on input line 1.
-LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
-(Font)              scaled to size 10.20007pt on input line 1.
- [12]
-LaTeX Font Info:    Try loading font information for TS1+fvm on input line 36.
- (/usr/share/texlive/texmf-dist/tex/latex/bera/ts1fvm.fd
-File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
-)
-LaTeX Font Info:    Font shape `TS1/fvm/m/n' will be
-(Font)              scaled to size 10.20007pt on input line 36.
-) (../src/setup.m [13] [14]) (../src/extract_features.m [15] [16]) [17]pdfTeX warning (ext4): destination with the same identifier (name{setup}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.28 \subsubsection*{\hypertarget{setup}{setup.m}}
-                                                   (../src/setup.m [18]) (../src/manual_classification.m [19] [20] [21] [22]) (../src/trainclf_loglikelihood.m
-Overfull \hbox (33.92673pt too wide) in paragraph at lines 22--23
-[][][][] 
- []
-
-[23]
-Overfull \hbox (33.92673pt too wide) in paragraph at lines 23--24
-[][][][] 
- []
 
 
-Overfull \hbox (27.80663pt too wide) in paragraph at lines 30--31
-[][][][] 
- []
+LaTeX Warning: Reference `montage_data_bgremove' on page 2 undefined on input line 116.
+
+[2 <./img/bg_model/org_1.png (PNG copy)> <./img/bg_model/norm_1.png (PNG copy)>] [3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 130.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 130.
+ (/home/goweiting/Documents/IVR/01a.CW1/report/tex/methodology.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 130.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 130.
+Package rerunfilecheck Info: File `methodology.out' has not changed.
+(rerunfilecheck)             Checksum: BF063511E85994E77DD982FD5EF593E9;109.
 
 
-Overfull \hbox (33.92673pt too wide) in paragraph at lines 31--33
-[][][][] 
- []
+LaTeX Warning: There were undefined references.
 
-[24] [25]) (../src/main.m [26] [27]) [28] (../src/image_processing/normalise_RGB.m [29]) (../src/image_processing/bg_extract.m [30] [31] [32] [33] [34]) (../src/image_processing/bg_subtraction.m [35] [36]) (../src/image_processing/dothresh.m [37] [38] [39]) [40] (../src/features/getFeatures.m [41]) (../src/features/rawmoment.m [42]) (../src/features/centralmoment.m [43]) (../src/features/SI_moment.m) (../src/features/complexmoment.m [44]) [45] (../src/classification/split_data.m [46]) (../src/classification/user_classify.m [47]) (../src/classification/findConfusion.m [48] [49] [50] [51]) (../src/classification/gaussianDistr.m [52]) (../src/classification/gaussian_clf.m [53] [54]) [55] (../src/filters/median_filter.m [56]) (../src/filters/median_filter_iter.m [57]) (../src/filters/gaussian_filter_1d.m [58] [59]) (../src/filters/gaussian_filter_2d.m [60])) [61] (/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.bbl
-Underfull \hbox (badness 2119) in paragraph at lines 9--16
-\T1/cmr/m/n/12 demic Press, Boston, fourth edi-tion edi-tion, 2012.  ISBN 978-
- []
-
-
-Underfull \hbox (badness 1616) in paragraph at lines 9--16
-\T1/cmr/m/n/12 0-12-386908-1.  doi: $http : / / dx . doi . org / 10 . 1016 / B978-[]0-[]12-[]386908-[]1 .
- []
-
-) [62]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
- (/home/goweiting/Documents/IVR/01a.CW1/report/tex/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BD803602BC8915AD86450014640D053C;438.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 24486 strings out of 494497
- 480021 string characters out of 6172399
- 682635 words of memory out of 5000000
- 25865 multiletter control sequences out of 15000+600000
- 16388 words of font info for 43 fonts, out of 8000000 for 9000
+ 22022 strings out of 494497
+ 442688 string characters out of 6172399
+ 519545 words of memory out of 5000000
+ 25022 multiletter control sequences out of 15000+600000
+ 12173 words of font info for 32 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 62i,12n,73p,593b,1913s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{gaussianDist} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{humoment} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{discussion} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{resut} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{method} has been referenced but does not exist, replaced by a fixed one
-
- </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/public/dingbat/dingbat.720pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb>
-Output written on /home/goweiting/Documents/IVR/01a.CW1/report/tex/main.pdf (62 pages, 589382 bytes).
+ 71i,9n,75p,520b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/public/dingbat/dingbat.720pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/goweiting/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on /home/goweiting/Documents/IVR/01a.CW1/report/tex/methodology.pdf (3 pages, 196605 bytes).
 PDF statistics:
- 2527 PDF objects out of 2984 (max. 8388607)
- 2110 compressed objects within 22 object streams
- 1517 named destinations out of 1728 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 219 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
+ 39 words of extra memory for PDF output out of 10000 (max. 10000000)
 
