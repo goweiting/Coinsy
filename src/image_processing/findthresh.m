@@ -8,7 +8,7 @@ function thresh = findthresh(thehist, sizeparam, show)
 [len,~] = size(thehist);
 
 % convolve with a gaussian smoothing window here
-filterlen = 50; % filter length
+filterlen = 50; % filter length, default = 50
 thefilter = mygausswin(filterlen,sizeparam);
 thefilter = thefilter/sum(thefilter); % normalize
 tmp2 = conv(thefilter,thehist);

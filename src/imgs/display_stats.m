@@ -75,7 +75,7 @@ switch nargin
         GRAY = rgb2gray(uint8(smoothed_surfc));
         
         subplot(5,4, [3 4 7 8]);
-        meshc(GRAY);
+        mesh(GRAY);
         colormap(gray);
         colorbar;
         title('Smoothened surface contour');
@@ -160,7 +160,7 @@ switch nargin
         smoothed_surfc = median_filter_iter(double(GRAY), ITER, 0, SIZE_MF);
         smoothed_surfc = gaussian_filter_2d(smoothed_surfc, 0, SIZE_GAUSS, SIGMA_GAUSS);
         subplot(2,2,2);
-        meshc(smoothed_surfc);
+        mesh(smoothed_surfc);
         colormap(gray);
         colorbar;
         title('Smoothened Surface Contour');

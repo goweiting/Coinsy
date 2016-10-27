@@ -74,11 +74,8 @@ end
 
 disp(bar);
 
-fprintf('\n>> Doing morphing...\nbwmorph(img,erode,1)\n');
-% [~, num_img] =size(IMGS_THRESH);
-% for i = 1:num_img
-%     IMGS_THRESH
-% end
+fprintf('\n>> Doing morphing...\nbwmorph(img,erode,1)');
+
 %% NOTE:
 % AT this stage, we have threshold all our training set.
 % call another script for feature extraction

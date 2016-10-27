@@ -19,16 +19,16 @@ end
 % y = reshape(y, [],1); % convert into col vector
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CLASS 1 is missing (NO POUND COIN DETECTED!)
-% CREATE BOGUS DATA:
-for w=1:4
-    y(num_instance+w) = 1;
-    X(num_instance+w,:) = [rand(1,num_feature)]; % randomly give some data!
-end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % CLASS 1 is missing (NO POUND COIN DETECTED!)
+% % CREATE BOGUS DATA:
+% for w=1:4
+%     y(num_instance+w) = 1;
+%     X(num_instance+w,:) = [rand(1,num_feature)]; % randomly give some data!
+% end
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Do hold-out validation:
 % 50% for training, 25% for validation 25% for test
