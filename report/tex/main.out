@@ -1,9 +1,10 @@
 \BOOKMARK [1][-]{section.1}{intro}{}% 1
 \BOOKMARK [1][-]{section.2}{Methodology}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Classification}{section.2}% 3
-\BOOKMARK [1][-]{section.3}{Result}{}% 4
-\BOOKMARK [1][-]{appendix.A}{Scripts}{}% 5
-\BOOKMARK [1][-]{appendix.B}{Image Processing}{}% 6
-\BOOKMARK [1][-]{appendix.C}{Feature Extraction}{}% 7
-\BOOKMARK [1][-]{appendix.D}{Classification}{}% 8
-\BOOKMARK [1][-]{appendix.E}{Basic Filters}{}% 9
+\BOOKMARK [2][-]{subsection.2.1}{Feature Extraction}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Classification}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Result}{}% 5
+\BOOKMARK [1][-]{appendix.A}{Scripts}{}% 6
+\BOOKMARK [1][-]{appendix.B}{Image Processing}{}% 7
+\BOOKMARK [1][-]{appendix.C}{Feature Extraction}{}% 8
+\BOOKMARK [1][-]{appendix.D}{Classification}{}% 9
+\BOOKMARK [1][-]{appendix.E}{Basic Filters}{}% 10

@@ -156,7 +156,7 @@ The binary image indicates the existence of objects as 1 (white) and the backgro
 \end{figure}
 
 \subsubsection*{Morphological Gradient Edge Detection}
-Another model that we tried out, which performed better, is the morphological gradient edge detector. Using a structuring element B (such as a disk with 5 pixel radius), we first find the  image A dilated with B and image A eroded with B separately. Then we subtract the two. Since the background is largely the same for both outcomes, the subtraction of each other will remove the background and retain the edges of each objects in the foreground.
+Another model that we tried out, which performed better, is the morphological gradient edge detector (\hyperlink{gradmag}{gradmag\_edge.m}). Using a structuring element B (such as a disk with 5 pixel radius), we first find the  image A dilated with B and image A eroded with B separately. Then we subtract the two. Since the background is largely the same for both outcomes, the subtraction of each other will remove the background and retain the edges of each objects in the foreground.
 
 We used \texttt{matalb} built in function to createa structuring element with disk radius of 3 pixels, and dilate and erode a given image. After the subtraction, we use the same thresholding function to get the binary image. The outcome of this operation is shown in \autoref{bin_morph}.
 
@@ -178,14 +178,114 @@ We used \texttt{matalb} built in function to createa structuring element with di
   \label{bin_morph}
 \end{figure}
 
+The difference in result of extractiing images for this two different segmentation methods will be revealed in \hyperlink{result}{result section} later.
+
 % ====================================================================== %
 \subsubsection*{Filtering}
 There are numerous filtering technique to make images better. One that we considered during the project is median filtering, and iterative median filtering. The aim is to preserve the edges while removing the noise in the background by find the median of the neighbourhood of the pixel. With the latter, the image undergoes any number of iteration until no visible change is observed. In our function, we utilised the \texttt{matlab} function \texttt{medfilt2}.
 
+However, we realised that despite the changes in the edges, normalising an image is the main cause of a bad threshold. We are unable to find the threshold, as the gaussian smoothing operator in \texttt{findthresh} causes the bimodal peaks in the histogram of to become a unimodal peak. In this case, finding a useful threshold is futile.
+
+\subsection{Feature Extraction}
+The end product of the previous stage leaves us with an array of subimages. These subimages are black and white, such as those in \autoref{bw_subimg}. The output from this section is to have an array of features that uniquely defined each classes of objects defined above. We chose the following features:
+
+\begin{enumerate}
+  \item Area
+  \item Perimeter
+  \item Compactness
+  \item Rectangularity
+  \item Elongation
+  \item Hu's invariant moments
+  \item Complex invariant moments
+  %       1) Area
+%       2) Perimeter
+%       3) compactness
+%       4) rectangularity
+%       5) elongation
+%       6) hu moment invariant
+%       7) complex invariant
+\end{enumerate}
+
+We later realised that the number of features is too large for our classifier, and casuse the covariance matrix to be almost singular. Although we regularised the matrix, we decided to remove Hu's invariant moments from the features, leaving us with 11 features to describe an object. Hence, for each subimages, there will be a feature vector of size 11.
+
+\begin{figure}[!h]
+  \centering
+  \begin{subfigure}[b]{.2\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/bwimg-2.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{.2\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/bwimg-3.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{.2\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/bwimg-4.png}
+  \end{subfigure}
+  \begin{subfigure}[b]{.2\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{./img/srcimgs/bwimg-5.png}
+  \end{subfigure}
+  \caption{Some subimages of the objects detected by \texttt{matlab} function \texttt{bwlabel}. It first find region where 1s are and give them a numeric label. Since pixel belonging to an object will come together, the numeric clsas will uniquely identify the object.}
+  \label{bw_subimg}
+\end{figure}
+
 \subsection{Classification}
+After extracting the features, \hyperlink{splitdata}{split\_data.m} will be called to split the dataset into the training set (\texttt{X\_train} and \texttt{y\_train}) and test set (\texttt{X\_test}) and \texttt{y\_test}). Then,
+ \hyperlink{trainmultivarate}{trainmultivarate.m} will estimate the parameters based on the \texttt{X\_train} - the \texttt{prior}, \texttt{covariance} and \texttt{mean} for each class will be estimated.
 
+ With these class parameters, the \hyperlink{gaussianDistr}{gaussianDistr.m} and \hyperlink{gaussianclf}{gaussian\_clf.m} will be called to estimate the posterior probability for each object in \texttt{X\_test}.
 
+ \subsubsection*{Linear Discriminant - average covariance for all classes}
+We consider the use case of a Linear Discriminant function. Howwever, on second though, the idea that all objects (classes) having the same covariance does not quite make sense. Since the features describe the data, the covariance of the feature set should be unique to all the object.
 
+The classification step outputs the confusion matrix for the data, such as this one when the multivarate classifier is trained with 75 percent of the data and 25 percent of it for the test data.
+
+\begin{verbatim}
+  ========================================================
+>> trainmultivarate
+Done!
+
+The confusion matrix is:
+(rows = actual class; columns = predicted class)
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     3     0     0     0     0     0     0     0     0
+     0     0     0     2     1     0     0     0     0     0
+     0     0     0     0     1     0     0     0     0     0
+     0     0     0     0     0     1     0     1     0     0
+     0     0     0     0     0     0     1     0     0     0
+     0     0     0     0     0     0     0     2     2     0
+     0     0     0     0     0     0     0     0     1     0
+     0     1     0     0     1     0     0     0     0     2
+
+The classification results for each class are:
+   (FN    FP    TP   TN)
+     0     0     0    19
+     0     4     0    15
+     3     0     0    16
+     1     0     2    16
+     0     2     1    16
+     1     0     1    17
+     0     0     1    18
+     2     1     2    14
+     0     2     1    16
+     2     0     2    15
+========================================================
+Summary:
+Classification using full gaussian model
+Number Incorrect = 18
+Number Correct = 10
+Number of classes = 10
+Accuracy = 0.526316 percent
+========================================================
+\end{verbatim}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{./img/srcimgs/cm_01.png}
+  \caption{Confusion Matrix, with rows representing actual class and columns representing predicted class. A brighter white indicates a higher number of true positive. The class 1 (1 pound coin) have no boxes lit up, signifying that this test set does not have any 1 pound coin in it}
+\end{figure}
 
 
 \end{document}

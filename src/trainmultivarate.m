@@ -76,5 +76,5 @@ end
 [y_test_pred, prob] = gaussian_clf(X_test, DATA_CLASS);
 
 % Generate Statistics:
-[cm_test, per] = findConfusion(y_test_pred, y_test, 11, p_limit);
+[cm_test, per] = findConfusion(y_test_pred, y_test, 10);
 %%

@@ -96,7 +96,8 @@ acc_score = TP/ Q; % Q = number of obervation
 
 fprintf('Number Incorrect = %d\n', incorrect);
 fprintf('Number Correct = %d\n', correct);
-fprintf('Number Unclassified (lesser than p = %.2f) = %d\n',p_limit, Per(11,1) );
+fprintf('Number of classes = %d\n', num_class);
+% fprintf('Number Unclassified (lesser than p = %.2f) = %d\n',p_limit, Per(11,1) );
 fprintf('Accuracy = %3f percent\n\n', acc_score);
 disp('========================================================');
 
