@@ -11,7 +11,7 @@ while start
     fprintf('This is the coinsy counter!\nYour current work directory is: \n\t');
     disp(pwd); disp(barbar);
     fprintf('To END: enter cltr + c\n');
-    prompt_start = 'To START: enter your image file (rel/abs dir) below:\n';
+    prompt_start = 'To START: enter your image file (rel/abs dir) below:\n>>  ';
     
     filename = input(prompt_start, 's'); 
     if isempty(filename)
@@ -24,7 +24,7 @@ while start
     
     % display image
     imshow(original_image);
-    s = sprintf('is this the correct image? [0/1] \n');
+    s = sprintf('is this the correct image? [1/0] ');
     yes = input(s);    
     if yes
         tmp = input('Continue? [1/0] ');
@@ -41,15 +41,17 @@ while start
     
     disp(bar); disp(barbar);
     disp('NOW: Segmenting the image...');
-    method = input('Which method should we use?\n[1] Morphological Gradient Edge Detection\n[2]Normalised Bg model\n[1,2]   >> ');
+    method = input('Which method should we use?\n[1] Morphological Gradient Edge Detection\n[2] Normalised Bg model\n>>  ');
     
     if method==1 % use morph edge detection 
         % Do median filtering first
-        
+        window_size = 5;
+        fprintf('>> Filtering the image with median filter with window_size = %d\n',window_size);
+        IMG = median_filter_iter(original_image, 5, 0, window_size);
         
         fprintf('\n Using Morphological Gradient Edge Detection...\n');
         % Apply morphological gradient edge detection to it
-        IMGS_BGREMOVE_TEST{1} = edge_morph_disk(original_image);
+        IMGS_BGREMOVE_TEST{1} = edge_morph_disk(IMG);
 
         % save input
         s = sprintf('./imgs/testing/edges_morph.TEST.png');

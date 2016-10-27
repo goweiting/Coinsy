@@ -13,18 +13,18 @@ for i=1:9
     % Use median filtering
     IMG = IMGS{i};
     window_size = 5;
-    fprintf('>> Filtering the image with median filter with window_size = %d\n',i);
+    fprintf('>> Filtering the image with median filter with window_size = %d\n',window_size);
     IMG = median_filter_iter(IMG, 5, 0, window_size);
     
     % performs edge detection using morphology with size of 3;
     fprintf('>> Finding Edges for imag %d\n',i);
-    IMGS_BGREMOVE{i} = edge_morph_disk(IMGS);
+    IMGS_BGREMOVE{i} = edge_morph_disk(IMGS{i});
 
     % For printing images    
     s = sprintf('./imgs/morph_thresh/edges_morph_medfilt.%d.png',i);
     close all; 
     figure;
-    imshow(edges_morph{i})
+    imshow(IMGS_BGREMOVE{i})
     export_fig(s);
     close all;
 end

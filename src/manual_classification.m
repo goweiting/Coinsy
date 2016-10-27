@@ -104,7 +104,7 @@ end
 
 
 %% Delete Class 11 instances - in black box in images
-fprintF('Prune subimages which are marked for removal (irrelevant)\n');
+fprintf('Prune subimages which are marked for removal (irrelevant)\n');
 class_list  = [DATA.Class];
 logica_     = [class_list == 11];
 DATA(logica_) = [];
