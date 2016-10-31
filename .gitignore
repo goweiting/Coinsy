@@ -1,5 +1,4 @@
 **/*.mat
-!**/dataset/*
 **/imgs/**
 src/*.mat
 src/**.m~
